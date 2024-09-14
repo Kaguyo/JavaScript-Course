@@ -16,6 +16,6 @@
     cursor: pointer;
     transition: background-color 0.25s;
 }
-.buttons:hover{
-    background-color: hsl(214,100%,74%);
+.buttons:hover{ /* Hover: when pointer passes through happens {...}*/
+    background-color: hsl(214,100%,56%);
 }
