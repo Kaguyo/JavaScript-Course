@@ -7,20 +7,26 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <input type="radio" id="character1" name="characterList">
-    <label class="labelCharacter" for="character1">Artoria</label><br>
+    <div id="pickCharacter">
+        <input type="radio" id="character1" name="characterList" class="inputRadio">
+        <label class="labelCharacter" for="character1">Artoria</label><br>
 
-    <input type="radio" id="character2" name="characterList">
-    <label class="labelCharacter" for="character2">Baobhan</label><br>
+        <input type="radio" id="character2" name="characterList" class="inputRadio">
+        <label class="labelCharacter" for="character2">Baobhan</label><br>
 
-    <input type="radio" id="character3" name="characterList">
-    <label class="labelCharacter" for="character3">Kafka</label><br>
+        <input type="radio" id="character3" name="characterList" class="inputRadio">
+        <label class="labelCharacter" for="character3">Kafka</label><br>
 
-    <input type="radio" id="character4" name="characterList">
-    <label class="labelCharacter" for="character4">Seele</label><br><br>
+        <input type="radio" id="character4" name="characterList" class="inputRadio">
+        <label class="labelCharacter" for="character4">Seele</label><br><br>
 
-    <button type="submit" id="mySubmit">READY</button>
-    <p id="selectedCharacter"></p>
+        <button type="submit" id="mySubmit">READY</button>
+        <p id="p1Message"></p>
+        <div id="showStatus">
+            <p id="showPlayerStatus"></p>
+            <p id="showEnemyStatus"></p>
+        </div>
+    </div>
     <script src="index.js"></script>
 </body>
 </html>
