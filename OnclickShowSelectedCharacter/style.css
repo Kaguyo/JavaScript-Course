@@ -46,13 +46,17 @@
     transition: max-height 0.5s ease-out, opacity 0.5s ease-out; /* Transição suave de altura e opacidade */
     visibility: hidden; /* Invisível inicialmente */
     opacity: 0; /* Invisível com transição */
-    position: relative;
     width: 100%;
     margin: 0 auto;
-    padding: 10px;
+    padding-bottom: 10px;
     left: 0%;
     background-color: rgb(15, 0, 0);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.55);
+    display: flex; /* Adiciona o display flex */
+    justify-content: space-around; /* Espaça os elementos filhos */
+    align-items: center; /* Alinha verticalmente no centro */
+    gap: 50%;
+    
 }
 
 #showStatus.active {
@@ -60,19 +64,16 @@
     visibility: visible; /* Visível quando ativa */
     opacity: 1; /* Visível com transição */
 }
-#showPlayerStatus{
-    position: relative;
+#showPlayerStatus {
     font-family: Verdana;
     font-size: large;
     color: white;
-    left: 2%;
 }
-#showEnemyStatus{
-    position: relative;
+
+#showEnemyStatus {
     font-family: Verdana;
     font-size: large;
     color: white;
-    right: 2%;
 }
 #backgroundGif {
     position: fixed; /* Fica fixo na tela */
