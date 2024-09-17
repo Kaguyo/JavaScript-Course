@@ -1,0 +1,113 @@
+* {
+    box-sizing: border-box;
+}
+
+#mySubmit{
+    position: relative;
+    font-size: 1em;
+    color: rgb(255, 255, 255);
+    background-color: rgb(100, 165, 252);
+    border: 4px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.55);
+    cursor: pointer;
+    border-radius: 3px;
+    left: 1%;
+}
+#mySubmit:hover{
+    background-color:rgb(20, 85, 170);
+}
+.labelCharacter{
+    position: relative;
+    font-family: Verdana;
+    color: rgb(255, 255, 255);
+    left: 1%;
+}
+.inputRadio{
+    position: relative;
+    left: 0.5%;
+}
+#p1Message{
+    position: relative;
+    font-family: Verdana;
+    font-size: large;
+    color: white;
+}
+#pickCharacter{
+    position: absolute;
+    width: 100%;
+    left: 0%;
+    top: 0%;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.55);
+    background-color: rgb(73, 73, 73);
+}
+#showStatus {
+    max-height: 0; /* Altura inicial zero para ocultar a div */
+    overflow: hidden; /* Esconder conteúdo que excede a altura */
+    transition: max-height 0.5s ease-out, opacity 0.5s ease-out; /* Transição suave de altura e opacidade */
+    visibility: hidden; /* Invisível inicialmente */
+    opacity: 0; /* Invisível com transição */
+    width: 100%;
+    margin: 0 auto;
+    left: 0%;
+    background-color: rgb(15, 0, 0);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.55);
+    justify-content: space-around; /* Espaça os elementos filhos */
+    align-items: center; /* Alinha verticalmente no centro */
+    gap: 50%;
+}
+#showStatus.active {
+    max-height: 60px; /* Altura final da div quando estiver visível */
+    visibility: visible; /* Visível quando ativa */
+    opacity: 1; /* Visível com transição */
+}
+
+#showPlayerStatus {
+    font-family: Verdana;
+    font-size: large;
+    color: white;
+}
+
+#showEnemyStatus {
+    font-family: Verdana;
+    font-size: large;
+    color: white;
+}
+#backgroundGif {
+    position: fixed; /* Fica fixo na tela */
+    top: 0;
+    left: 0;
+    width: 100vw; /* Largura da tela */
+    height: 100vh; /* Altura da tela */
+    overflow: hidden; /* Oculta qualquer overflow */
+    z-index: -1; /* Fica atrás do conteúdo */
+    background-color: rgba(0, 0, 0, 0.8); /* Fundo opcional para cobrir áreas não preenchidas */
+}
+
+/* Configuração da imagem dentro do contêiner do GIF */
+#backgroundGif img {
+    position: absolute; /* Posiciona a imagem dentro do contêiner */
+    top: 50%; /* Centraliza verticalmente */
+    left: 50%; /* Centraliza horizontalmente */
+    transform: translate(-50%, -50%); /* Ajusta o posicionamento para centralizar */
+    width: 100%; /* Ajusta a largura para cobrir o contêiner */
+    height: 100%; /* Ajusta a altura para cobrir o contêiner */
+    object-fit: cover; /* Ajusta a imagem para cobrir o contêiner */
+}
+#returnBtn {
+    position: relative;
+    font-size: 1em;
+    color: rgb(255, 255, 255);
+    background-color: rgb(59, 43, 43);
+    border: 4px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.55);
+    border-radius: 3px;
+    left: 1%;
+    transition: background-color 0.2s;
+}
+#returnBtn.hover-active{
+    background-color: rgb(252, 100, 100);
+}
+#returnBtn.hover-active:hover {
+  cursor: pointer;
+  background-color: rgb(170, 0, 0);
+}
