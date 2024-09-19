@@ -54,6 +54,7 @@ returnBtn.onclick = function () {
         returnBtn.classList.remove('hover-active'); // classe hover-active
     }
 }
+
 mySubmit.onclick = function () {
     if (clickPhase < 2 && !(character1.checked || character2.checked || character3.checked || character4.checked)) {
         selectedCharacter.textContent = `Please select a character.`;
