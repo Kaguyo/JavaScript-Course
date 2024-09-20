@@ -113,14 +113,15 @@ mySubmit.onclick = function () {
     }
 
     if (clickPhase == 2) {
+        clickPhase = 3;
+        document.querySelector('label[for="character1"]').textContent = "Gepard";
+        document.querySelector('label[for="character2"]').textContent = "Bronya";
+        document.querySelector('label[for="character3"]').textContent = "Blade";
+        document.querySelector('label[for="character4"]').textContent = "Archer";
+        radios.forEach(radio => { radio.checked = false; });
         setTimeout(function () {
-            clickPhase = 3;
+            if (selectedCharacter.textContent != "Please select an enemy." && selectedCharacter.textContent != "Select a character.")
             selectedCharacter.textContent = "Now select an enemy.";
-            document.querySelector('label[for="character1"]').textContent = "Gepard";
-            document.querySelector('label[for="character2"]').textContent = "Bronya";
-            document.querySelector('label[for="character3"]').textContent = "Blade";
-            document.querySelector('label[for="character4"]').textContent = "Archer";
-            radios.forEach(radio => { radio.checked = false; });
         }, 1500);
     }
 
