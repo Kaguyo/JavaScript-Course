@@ -34,7 +34,7 @@ returnBtn.onclick = function () {
     if (character1.checked || character2.checked || character3.checked || character4.checked){
         radios.forEach((radio) => {radio.checked = false});
     }
-    else if (clickPhase >= 2){
+    else if (clickPhase == 2){
         clickPhase = 1;
         character = null;
         document.querySelector('p[id="showPlayerStatus"]').textContent = "";
@@ -49,6 +49,12 @@ returnBtn.onclick = function () {
             showStatus.classList.add("hidden");
         }
         selectedCharacter.textContent = "Select a character.";
+    }
+    else if (clickPhase == 3){
+        clickPhase = 2;
+        enemy = null;
+        document.querySelector('p[id="showEnemyStatus"]').textContent = null;
+        selectedCharacter.textContent = "Please select an enemy.";
     }
     if (!(character1.checked || character2.checked || character3.checked || character4.checked) && clickPhase == 1){
         returnBtn.classList.remove('hover-active'); // classe hover-active
@@ -73,6 +79,7 @@ mySubmit.onclick = function () {
             enemy = "Gepard";
             clickPhase = 3;
             document.querySelector('p[id="showEnemyStatus"]').textContent = enemy;
+            radios.forEach(radio => { radio.checked = false; });
         }
     } else if (character2.checked) {
         if (clickPhase == 1) {
@@ -85,6 +92,7 @@ mySubmit.onclick = function () {
             enemy = "Bronya";
             clickPhase = 3;
             document.querySelector('p[id="showEnemyStatus"]').textContent = enemy;
+            radios.forEach(radio => { radio.checked = false; });
         }
     } else if (character3.checked) {
         if (clickPhase == 1) {
@@ -97,6 +105,7 @@ mySubmit.onclick = function () {
             enemy = "Blade";
             clickPhase = 3;
             document.querySelector('p[id="showEnemyStatus"]').textContent = enemy;
+            radios.forEach(radio => { radio.checked = false; });
         }
     } else if (character4.checked) {
         if (clickPhase == 1) {
@@ -109,6 +118,7 @@ mySubmit.onclick = function () {
             enemy = "Archer";
             clickPhase = 3;
             document.querySelector('p[id="showEnemyStatus"]').textContent = enemy;
+            radios.forEach(radio => { radio.checked = false; });
         }
     }
 
