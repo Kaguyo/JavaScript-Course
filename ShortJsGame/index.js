@@ -7,8 +7,8 @@ const selectedCharacter = document.getElementById("p1Message");
 const showStatus = document.getElementById("showStatus");
 const returnBtn = document.getElementById("returnBtn");
 const radios = document.querySelectorAll('input[name="characterList"]'); // Seleciona todos os radios
-let character;
-let enemy;
+let character = null;
+let enemy = null;
 let clickPhase = 1;
 // Adiciona evento de mudança a todos os radios
 radios.forEach((radio) => {
@@ -37,17 +37,15 @@ returnBtn.onclick = function () {
     else if (clickPhase == 2){
         clickPhase = 1;
         character = null;
-        document.querySelector('p[id="showPlayerStatus"]').textContent = "";
+        document.querySelector('p[id="showPlayerStatus"]').textContent = null;
         enemy = null;
         document.querySelector('p[id="showEnemyStatus"]').textContent = null;
         document.querySelector('label[for="character1"]').textContent = "Artoria";
         document.querySelector('label[for="character2"]').textContent = "Baobhan";
         document.querySelector('label[for="character3"]').textContent = "Kafka";
         document.querySelector('label[for="character4"]').textContent = "Seele";
-        if (character != null && clickPhase >= 2) {
-            showStatus.classList.remove("active");
-            showStatus.classList.add("hidden");
-        }
+        showStatus.classList.remove("active");
+        showStatus.classList.add("hidden");
         selectedCharacter.textContent = "Select a character.";
     }
     else if (clickPhase == 3){
@@ -56,7 +54,7 @@ returnBtn.onclick = function () {
         document.querySelector('p[id="showEnemyStatus"]').textContent = null;
         selectedCharacter.textContent = "Please select an enemy.";
     }
-    if (!(character1.checked || character2.checked || character3.checked || character4.checked) && clickPhase == 1){
+    if (clickPhase == 1){
         returnBtn.classList.remove('hover-active'); // classe hover-active
     }
 }
@@ -65,7 +63,7 @@ mySubmit.onclick = function () {
     if (clickPhase < 2 && !(character1.checked || character2.checked || character3.checked || character4.checked)) {
         selectedCharacter.textContent = `Please select a character.`;
     }
-    if (clickPhase > 1 && !(character1.checked || character2.checked || character3.checked || character4.checked)) {
+    if (clickPhase > 1 && clickPhase < 3 && !(character1.checked || character2.checked || character3.checked || character4.checked)) {
         selectedCharacter.textContent = `Please select an enemy.`;
     }
     if (character1.checked) {
@@ -123,14 +121,13 @@ mySubmit.onclick = function () {
     }
 
     if (clickPhase == 2) {
-        clickPhase = 3;
         document.querySelector('label[for="character1"]').textContent = "Gepard";
         document.querySelector('label[for="character2"]').textContent = "Bronya";
         document.querySelector('label[for="character3"]').textContent = "Blade";
         document.querySelector('label[for="character4"]').textContent = "Archer";
         radios.forEach(radio => { radio.checked = false; });
         setTimeout(function () {
-            if (selectedCharacter.textContent != "Please select an enemy." && selectedCharacter.textContent != "Select a character.")
+            if (selectedCharacter.textContent != "Please select an enemy.")
             selectedCharacter.textContent = "Now select an enemy.";
         }, 1500);
     }
