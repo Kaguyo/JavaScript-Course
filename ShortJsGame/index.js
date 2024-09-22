@@ -1,3 +1,5 @@
+let userJson = null;
+let enemyJson = null;
 const character1 = document.getElementById("character1");
 const character2 = document.getElementById("character2");
 const character3 = document.getElementById("character3");
@@ -128,7 +130,32 @@ mySubmit.onclick = function () {
             radios.forEach(radio => { radio.checked = false; });
         }
     }
+    if (clickPhase == 2){
+        userJson = {
+            "name": character
+        }
+        fetch("https://localhost:7204/api/Personagem",{
+            method: "POST",
+            headers: {
+                "Content-Type":"application/json"
+            },
+            body: JSON.stringify(userJson)
+        }).then(response => {
+            if (!response.ok){
+                throw new Error("Erro na requisicao")
+            }
+            return response.json()
+        }).then(data => {
+            console.log(data)
+        })
+    }
+    
 
+    if (clickPhase == 3){
+        enemyJson = {
+            "name": enemy
+        }
+    }
     if (clickPhase == 2) {
         document.querySelector('label[for="character1"]').textContent = "Gepard";
         document.querySelector('label[for="character2"]').textContent = "Bronya";
