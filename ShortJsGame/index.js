@@ -2,6 +2,7 @@ const character1 = document.getElementById("character1");
 const character2 = document.getElementById("character2");
 const character3 = document.getElementById("character3");
 const character4 = document.getElementById("character4");
+const pickCharacter = document.getElementById("pickCharacter");
 const mySubmit = document.getElementById("mySubmit");
 const selectedCharacter = document.getElementById("p1Message");
 const showStatus = document.getElementById("showStatus");
@@ -49,6 +50,14 @@ returnBtn.onclick = function () {
         selectedCharacter.textContent = "Select a character.";
     }
     else if (clickPhase == 3){
+        document.querySelector('label[for="character1"]').textContent = "Gepard";
+        document.querySelector('label[for="character2"]').textContent = "Bronya";
+        document.querySelector('label[for="character3"]').textContent = "Blade";
+        document.querySelector('label[for="character4"]').textContent = "Archer";
+        pickCharacter.classList.remove("shrink");
+        radios.forEach(radio => {
+            radio.classList.remove("hidden")
+        });
         clickPhase = 2;
         enemy = null;
         document.querySelector('p[id="showEnemyStatus"]').textContent = null;
@@ -127,13 +136,22 @@ mySubmit.onclick = function () {
         document.querySelector('label[for="character4"]').textContent = "Archer";
         radios.forEach(radio => { radio.checked = false; });
         setTimeout(function () {
-            if (selectedCharacter.textContent != "Please select an enemy.")
+            if (selectedCharacter.textContent != "Please select an enemy." && selectedCharacter.textContent != "Select a character." && clickPhase != 3)
             selectedCharacter.textContent = "Now select an enemy.";
         }, 1500);
     }
-
+    if (clickPhase == 3) {
+        radios.forEach(radio => {
+            radio.classList.add("hidden")
+        });
+        pickCharacter.classList.add("shrink");
+        document.querySelector('label[for="character1"]').textContent = null;
+        document.querySelector('label[for="character2"]').textContent = null;
+        document.querySelector('label[for="character3"]').textContent = null;
+        document.querySelector('label[for="character4"]').textContent = null;
+    }
     // Adicionar a classe 'active' para a div #showStatus com animação de slide down
-    if (character != null && clickPhase >= 2) {
+    if (character != null && clickPhase >= 2 && clickPhase <= 3) {
         showStatus.classList.add("active"); // Adiciona a classe para mostrar a div com animação
     }
 };

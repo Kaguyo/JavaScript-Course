@@ -1,7 +1,16 @@
-* {
-    box-sizing: border-box;
-}
 
+#character1.hidden{
+    visibility: hidden;
+}
+#character2.hidden{
+    visibility: hidden;
+}
+#character3.hidden{
+    visibility: hidden;
+}
+#character4.hidden{
+    visibility: hidden;
+}
 #mySubmit{
     position: relative;
     font-size: 1em;
@@ -37,8 +46,13 @@
     width: 100%;
     left: 0%;
     top: 0%;
+    transition: max-height 0.5s ease-out, opacity 0.5s ease-out;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.55);
     background-color: rgb(73, 73, 73);
+    overflow: hidden;
+}
+#pickCharacter.shrink {
+    top: -120px;
 }
 #showStatus {
     max-height: 0; /* Altura inicial zero para ocultar a div */
