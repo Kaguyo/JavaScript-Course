@@ -186,8 +186,8 @@ mySubmit.onclick = function () {
         }).then(data => {
             console.log(data)
         });
-    }
-    if (clickPhase == 3){
+        
+    } else if (clickPhase == 3){
         chamarApi = 0
         enemyJson = {
             "name": enemy
@@ -207,6 +207,7 @@ mySubmit.onclick = function () {
             console.log(data)
         });
     }
+    
 
     if (clickPhase == 2) {
         document.querySelector('label[for="character1"]').textContent = "Gepard";
@@ -218,8 +219,7 @@ mySubmit.onclick = function () {
             if (selectedCharacter.textContent != "Please select an enemy." && selectedCharacter.textContent != "Select a character." && clickPhase != 3)
             selectedCharacter.textContent = "Now select an enemy.";
         }, 1500);
-    }
-    if (clickPhase == 3) {
+    } else if (clickPhase == 3) {
         radios.forEach(radio => {
             radio.classList.add("hidden")
         });
@@ -229,6 +229,7 @@ mySubmit.onclick = function () {
         document.querySelector('label[for="character3"]').textContent = null;
         document.querySelector('label[for="character4"]').textContent = null;
     }
+    
     // Adicionar a classe 'active' para a div #showStatus com animação de slide down
     if (character != null && clickPhase >= 2 && clickPhase <= 3) {
         showStatus.classList.add("active"); // Adiciona a classe para mostrar a div com animação
