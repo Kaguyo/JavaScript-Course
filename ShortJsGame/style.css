@@ -22,6 +22,16 @@
     border-radius: 3px;
     left: 1%;
 }
+#ChangeHealth{
+    position: relative;
+    font-size: 1em;
+    color: rgb(255, 255, 255);
+    background-color: rgba(30, 255, 0, 0.534);
+    border: 4px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.55);
+    transform: translate(10%);
+    cursor: pointer;
+}
 #mySubmit:hover{
     background-color:rgb(20, 85, 170);
 }
@@ -135,12 +145,19 @@
     height: 8px;
     border: 1px solid #000000;
 }
-
 #healthBar {
-    width: 53%;
+    width: 10%;
     height: 100%;
     background-color: rgb(41, 255, 155);
     position: fixed;
+    z-index: 3;
+    visibility: hidden;
+}
+#bleedingHealthBar{
+    height: 100%;
+    background-color: rgba(255, 0, 0, 0.644);
+    position: fixed;
+    width: 100%;
     z-index: 2;
 }
 #backgroundHealth {
@@ -150,14 +167,16 @@
     height: 100%;
     background-color: rgba(41, 255, 155, 0.151);
     z-index: 1;
+    visibility: hidden;
 }
 #energyBar {
     position: absolute;
-    width: 100%;
+    width: 0%;
     top: 150%;
     height: 100%;
     background-color: rgb(182, 94, 255);
     z-index: 2;
+    visibility: hidden;
 }
 #backgroundEnergy {
     position: absolute;
@@ -166,14 +185,24 @@
     height: 100%;
     background-color: rgba(233, 0, 221, 0.137);
     z-index: 1;
+    visibility: hidden;
 }
 #healthBarEnemy {
-    width: 100%;
     height: 100%;
     background-color: rgb(41, 255, 155);
     position: absolute;
-    z-index: 2;
+    z-index: 3;
     right: -133%;
+    visibility: hidden;
+}
+#bleedingHealthBarEnemy{
+    height: 100%;
+    background-color: rgba(255, 0, 0, 0.644);
+    position: fixed;
+    width: 100%;
+    right: -133%;
+    z-index: 2;
+    visibility: hidden;
 }
 #backgroundHealthEnemy {
     position: absolute;
@@ -182,15 +211,17 @@
     height: 100%;
     background-color: rgba(41, 255, 155, 0.151);
     z-index: 1;
+    visibility: hidden;
 }
 #energyBarEnemy {
     position: absolute;
-    width: 100%;
+    width: 0%;
     top: 150%;
     height: 100%;
     right: -133%;
     background-color: rgb(182, 94, 255);
     z-index: 2;
+    visibility: hidden;
 }
 #backgroundEnergyEnemy {
     position: absolute;
@@ -200,4 +231,32 @@
     right: -133%;
     background-color: rgba(233, 0, 221, 0.137);
     z-index: 1;
+    visibility: hidden;
+}
+#healthBar.active {
+    visibility: visible;
+}
+#backgroundHealth.active {
+    visibility: visible;
+}
+#energyBar.active {
+    visibility: visible;
+}
+#backgroundEnergy.active {
+    visibility: visible;
+}
+#healthBarEnemy.active {
+    visibility: visible;
+}
+#bleedingHealthBarEnemy.active {
+    visibility: visible;
+}
+#backgroundHealthEnemy.active {
+    visibility: visible;
+}
+#energyBarEnemy.active {
+    visibility: visible;
+}
+#backgroundEnergyEnemy.active {
+    visibility: visible;
 }

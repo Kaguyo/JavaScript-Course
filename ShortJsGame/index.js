@@ -1,6 +1,11 @@
 let userJson = null;
 let enemyJson = null;
 let chamarApi = 0;
+const healthBar = document.getElementById("healthBar");
+const healthBarEnemy = document.getElementById("healthBarEnemy");
+const bleedingHealthBarEnemy = document.getElementById("bleedingHealthBarEnemy");
+const bleedingHealthBar = document.getElementById("bleedingHealthBar")
+const ChangeHealth = document.getElementById("ChangeHealth");
 const character1 = document.getElementById("character1");
 const character2 = document.getElementById("character2");
 const character3 = document.getElementById("character3");
@@ -33,6 +38,30 @@ function checkSelection () {
     }
 }
 
+/*  formula de animação para barras de vida
+    let speed = 140;
+    
+    let healthWidth = parseFloat(window.getComputedStyle(healthBar).width);
+    let healthWidthEnemy = parseFloat(window.getComputedStyle(healthBarEnemy).width);
+    
+    let bleedingWidth = parseFloat(window.getComputedStyle(bleedingHealthBar).width);
+    let bleedingWidthEnemy = parseFloat(window.getComputedStyle(bleedingHealthBarEnemy).width);
+
+    let deltaBleeding = Math.abs(healthWidth - bleedingWidth); // Usado para conseguir valores diferentes para o divisor pela velocidade
+    let deltaBleedingEnemy = Math.abs(healthWidthEnemy - bleedingWidthEnemy); 
+    let transitionDuration = deltaBleeding / speed; 
+    let transitionDurationEnemy = deltaBleedingEnemy / speed;
+
+    bleedingHealthBar.style.transition = `width ${transitionDuration}s ease`;
+    bleedingHealthBarEnemy.style.transition = `width ${transitionDurationEnemy}s ease`;
+
+    bleedingHealthBar.style.width = `${healthWidth}px`;
+    bleedingHealthBarEnemy.style.width = `${healthWidthEnemy}px`;
+    
+    console.log(`Transition Duration for Player: ${transitionDuration}s`);
+    console.log(`Transition Duration for Enemy: ${transitionDurationEnemy}s`);
+*/
+
 // onclick functions
 returnBtn.onclick = function () {
     if (character1.checked || character2.checked || character3.checked || character4.checked){
@@ -41,13 +70,21 @@ returnBtn.onclick = function () {
     else if (clickPhase == 2){
         clickPhase = 1;
         character = null;
+
         document.querySelector('p[id="showPlayerStatus"]').textContent = null;
         document.querySelector('label[for="character1"]').textContent = "Artoria";
         document.querySelector('label[for="character2"]').textContent = "Baobhan";
         document.querySelector('label[for="character3"]').textContent = "Kafka";
         document.querySelector('label[for="character4"]').textContent = "Seele";
+        
         showStatus.classList.remove("active");
         showStatus.classList.add("hidden");
+
+        healthBar.classList.remove("active");
+        backgroundHealth.classList.remove("active");
+        energyBar.classList.remove("active");
+        backgroundEnergy.classList.remove("active");
+
         userJson = {
             "name": ""
         }
@@ -68,11 +105,18 @@ returnBtn.onclick = function () {
         selectedCharacter.textContent = "Select a character.";
     }
     else if (clickPhase == 3){
+        bleedingHealthBarEnemy.classList.remove("active");
         document.querySelector('label[for="character1"]').textContent = "Gepard";
         document.querySelector('label[for="character2"]').textContent = "Bronya";
         document.querySelector('label[for="character3"]').textContent = "Blade";
         document.querySelector('label[for="character4"]').textContent = "Archer";
         pickCharacter.classList.remove("shrink");
+
+        healthBarEnemy.classList.remove("active");
+        backgroundHealthEnemy.classList.remove("active");
+        energyBarEnemy.classList.remove("active");
+        backgroundEnergyEnemy.classList.remove("active");
+        
         radios.forEach(radio => {
             radio.classList.remove("hidden")
         });
@@ -169,6 +213,12 @@ mySubmit.onclick = function () {
     }
     if (clickPhase == 2 && chamarApi == 1){
         chamarApi = 0;
+
+        healthBar.classList.add("active");
+        backgroundHealth.classList.add("active");
+        energyBar.classList.add("active");
+        backgroundEnergy.classList.add("active");
+
         userJson = {
             "name": character
         }
@@ -189,6 +239,12 @@ mySubmit.onclick = function () {
         
     } else if (clickPhase == 3){
         chamarApi = 0
+        bleedingHealthBarEnemy.classList.add("active");
+        healthBarEnemy.classList.add("active");
+        backgroundHealthEnemy.classList.add("active");
+        energyBarEnemy.classList.add("active");
+        backgroundEnergyEnemy.classList.add("active");
+
         enemyJson = {
             "name": enemy
         }
