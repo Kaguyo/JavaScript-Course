@@ -1,3 +1,25 @@
+// Alocagem de atributos dos personagens
+let atk;
+let hpMax;
+let hp;
+let def;
+let critDmg;
+let critRate;
+let ultCost;
+let energy;
+let speed;
+
+let atkEnemy;
+let hpMaxEnemy;
+let hpEnemy;
+let defEnemy;
+let critDmgEnemy;
+let critRateEnemy;
+let ultCostEnemy;
+let energyEnemy;
+let speedEnemy;
+// Fim alocagem de atributos de personagens
+
 let userJson = null;
 let enemyJson = null;
 let chamarApi = 0;
@@ -5,7 +27,6 @@ const healthBar = document.getElementById("healthBar");
 const healthBarEnemy = document.getElementById("healthBarEnemy");
 const bleedingHealthBarEnemy = document.getElementById("bleedingHealthBarEnemy");
 const bleedingHealthBar = document.getElementById("bleedingHealthBar")
-const ChangeHealth = document.getElementById("ChangeHealth");
 const character1 = document.getElementById("character1");
 const character2 = document.getElementById("character2");
 const character3 = document.getElementById("character3");
@@ -37,37 +58,45 @@ function checkSelection () {
         returnBtn.classList.remove('hover-active');
     }
 }
+function TrackHealth(hpParameter, hpMaxParameter) {
+    let fraction = (hpParameter / hpMaxParameter) * 100;
+    if (hpMaxParameter == 0) { fraction = 0 };
+    healthBar.style.width = `${fraction}%`;
 
-/*  formula de animação para barras de vida
-    let speed = 140;
+    let speed = 120;
     
     let healthWidth = parseFloat(window.getComputedStyle(healthBar).width);
-    let healthWidthEnemy = parseFloat(window.getComputedStyle(healthBarEnemy).width);
-    
     let bleedingWidth = parseFloat(window.getComputedStyle(bleedingHealthBar).width);
-    let bleedingWidthEnemy = parseFloat(window.getComputedStyle(bleedingHealthBarEnemy).width);
-
-    let deltaBleeding = Math.abs(healthWidth - bleedingWidth); // Usado para conseguir valores diferentes para o divisor pela velocidade
-    let deltaBleedingEnemy = Math.abs(healthWidthEnemy - bleedingWidthEnemy); 
+    let deltaBleeding = Math.abs(healthWidth - bleedingWidth);
     let transitionDuration = deltaBleeding / speed; 
+
+    bleedingHealthBar.style.transition = `width ${transitionDuration}s`;
+
+    bleedingHealthBar.style.width = `${fraction}%`;
+}
+// =========================================================
+function TrackHealthEnemy(hpEnemyParameter, hpMaxEnemyParameter) {
+    let fractionEnemy = (hpEnemyParameter / hpMaxEnemyParameter) * 100;
+    if (hpMaxEnemy == 0) { fractionEnemy = 0 };
+    healthBarEnemy.style.width = `${fractionEnemy}%`;
+    let speed = 120;
+
+    let healthWidthEnemy = parseFloat(window.getComputedStyle(healthBarEnemy).width);
+    let bleedingWidthEnemy = parseFloat(window.getComputedStyle(bleedingHealthBarEnemy).width);
+    let deltaBleedingEnemy = Math.abs(healthWidthEnemy - bleedingWidthEnemy); 
     let transitionDurationEnemy = deltaBleedingEnemy / speed;
 
-    bleedingHealthBar.style.transition = `width ${transitionDuration}s ease`;
-    bleedingHealthBarEnemy.style.transition = `width ${transitionDurationEnemy}s ease`;
+    bleedingHealthBarEnemy.style.transition = `width ${transitionDurationEnemy}s`;
 
-    bleedingHealthBar.style.width = `${healthWidth}px`;
-    bleedingHealthBarEnemy.style.width = `${healthWidthEnemy}px`;
-    
-    console.log(`Transition Duration for Player: ${transitionDuration}s`);
-    console.log(`Transition Duration for Enemy: ${transitionDurationEnemy}s`);
-*/
+    bleedingHealthBarEnemy.style.width = `${fractionEnemy}%`;
+}
 
 // onclick functions
 returnBtn.onclick = function () {
-    if (character1.checked || character2.checked || character3.checked || character4.checked){
+    if (character1.checked || character2.checked || character3.checked || character4.checked) {
         radios.forEach((radio) => {radio.checked = false});
     }
-    else if (clickPhase == 2){
+    else if (clickPhase == 2) {
         clickPhase = 1;
         character = null;
 
@@ -78,7 +107,6 @@ returnBtn.onclick = function () {
         document.querySelector('label[for="character4"]').textContent = "Seele";
         
         showStatus.classList.remove("active");
-        showStatus.classList.add("hidden");
 
         healthBar.classList.remove("active");
         backgroundHealth.classList.remove("active");
@@ -100,18 +128,29 @@ returnBtn.onclick = function () {
             }
             return response.json()
         }).then(data => {
-            console.log(data)
-        })
+            console.log("Dados recebidos da API Personagem:", data);
+            atk = data.atk;
+            hpMax = data.hpMax;
+            hp = data.hp;
+            def = data.def;
+            critDmg = data.critDmg;
+            critRate = data.critRate;
+            ultCost = data.ultCost;
+            energy = data.energy;
+            speed = data.speed; 
+            TrackHealth(hp, hpMax);
+        });
+        
+
         selectedCharacter.textContent = "Select a character.";
     }
-    else if (clickPhase == 3){
+    else if (clickPhase == 3) {
         bleedingHealthBarEnemy.classList.remove("active");
         document.querySelector('label[for="character1"]').textContent = "Gepard";
         document.querySelector('label[for="character2"]').textContent = "Bronya";
         document.querySelector('label[for="character3"]').textContent = "Blade";
         document.querySelector('label[for="character4"]').textContent = "Archer";
         pickCharacter.classList.remove("shrink");
-
         healthBarEnemy.classList.remove("active");
         backgroundHealthEnemy.classList.remove("active");
         energyBarEnemy.classList.remove("active");
@@ -138,8 +177,20 @@ returnBtn.onclick = function () {
             }
             return response.json()
         }).then(data => {
-            console.log(data)
-        })
+            console.log("Dados recebidos da API Inimigo:", data);
+            atkEnemy = data.atk;
+            hpMaxEnemy = data.hpMax;
+            hpEnemy = data.hp;
+            defEnemy = data.def;
+            critDmgEnemy = data.critDmg;
+            critRateEnemy = data.critRate;
+            ultCostEnemy = data.ultCost;
+            energyEnemy = data.energy;
+            speedEnemy = data.speed;
+            TrackHealthEnemy(hpEnemy, hpMaxEnemy); 
+        });
+        
+
         selectedCharacter.textContent = "Please select an enemy.";
     }
     if (clickPhase == 1){
@@ -234,11 +285,20 @@ mySubmit.onclick = function () {
             }
             return response.json()
         }).then(data => {
-            console.log(data)
+            console.log("Dados recebidos da API Personagem:", data);
+            atk = data.atk;
+            hpMax = data.hpMax;
+            hp = data.hp;
+            def = data.def;
+            critDmg = data.critDmg;
+            critRate = data.critRate;
+            ultCost = data.ultCost;
+            energy = data.energy;
+            speed = data.speed; 
+            TrackHealth(hp, hpMax);
         });
         
     } else if (clickPhase == 3){
-        chamarApi = 0
         bleedingHealthBarEnemy.classList.add("active");
         healthBarEnemy.classList.add("active");
         backgroundHealthEnemy.classList.add("active");
@@ -255,15 +315,24 @@ mySubmit.onclick = function () {
             },
             body: JSON.stringify(enemyJson)
         }).then(response => {
-            if (!response.ok){
+            if (!response.ok) {
                 throw new Error("Erro na requisicao")
             }
             return response.json()
         }).then(data => {
-            console.log(data)
+            console.log("Dados recebidos da API Inimigo:", data);
+            atkEnemy = data.atk;
+            hpMaxEnemy = data.hpMax;
+            hpEnemy = data.hp;
+            defEnemy = data.def;
+            critDmgEnemy = data.critDmg;
+            critRateEnemy = data.critRate;
+            ultCostEnemy = data.ultCost;
+            energyEnemy = data.energy;
+            speedEnemy = data.speed;
+            TrackHealthEnemy(hpEnemy, hpMaxEnemy);
         });
     }
-    
 
     if (clickPhase == 2) {
         document.querySelector('label[for="character1"]').textContent = "Gepard";
@@ -275,7 +344,8 @@ mySubmit.onclick = function () {
             if (selectedCharacter.textContent != "Please select an enemy." && selectedCharacter.textContent != "Select a character." && clickPhase != 3)
             selectedCharacter.textContent = "Now select an enemy.";
         }, 1500);
-    } else if (clickPhase == 3) {
+    } 
+    else if (clickPhase == 3) {
         radios.forEach(radio => {
             radio.classList.add("hidden")
         });
@@ -287,7 +357,7 @@ mySubmit.onclick = function () {
     }
     
     // Adicionar a classe 'active' para a div #showStatus com animação de slide down
-    if (character != null && clickPhase >= 2 && clickPhase <= 3) {
+    if (character != null && clickPhase == 2) {
         showStatus.classList.add("active"); // Adiciona a classe para mostrar a div com animação
     }
 };
