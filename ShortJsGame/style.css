@@ -108,6 +108,24 @@
     height: 100%; /* Ajusta a altura para cobrir o contêiner */
     object-fit: cover; /* Ajusta a imagem para cobrir o contêiner */
 }
+@media only screen and (max-width: 480px) {
+    #C1img {
+        transform: translate(20%, 59.8%);
+        position: fixed;
+        width: 150px;
+        height: 290px;
+        left: 0%;
+    }
+}
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+    #C1img {
+        transform: translate(20%, 59.8%);
+        position: fixed;
+        width: 250px;
+        height: 390px;
+        left: 0%;
+    }
+}
 #returnBtn {
     position: relative;
     font-size: 1em;
