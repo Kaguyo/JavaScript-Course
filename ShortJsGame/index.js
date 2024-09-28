@@ -77,7 +77,7 @@ function TrackHealth(hpParameter, hpMaxParameter) {
 // =========================================================
 function TrackHealthEnemy(hpEnemyParameter, hpMaxEnemyParameter) {
     let fractionEnemy = (hpEnemyParameter / hpMaxEnemyParameter) * 100;
-    if (hpMaxEnemy == 0) { fractionEnemy = 0 };
+    if (hpMaxEnemyParameter == 0) { fractionEnemy = 0 };
     healthBarEnemy.style.width = `${fractionEnemy}%`;
     let speed = 120;
 
@@ -145,6 +145,8 @@ returnBtn.onclick = function () {
         selectedCharacter.textContent = "Select a character.";
     }
     else if (clickPhase == 3) {
+        chamarApi = 2;
+        selectedCharacter.style.visibility = "visible";
         bleedingHealthBarEnemy.classList.remove("active");
         document.querySelector('label[for="character1"]').textContent = "Gepard";
         document.querySelector('label[for="character2"]').textContent = "Bronya";
@@ -263,7 +265,8 @@ mySubmit.onclick = function () {
         }
     }
     if (clickPhase == 2 && chamarApi == 1){
-        chamarApi = 0;
+        healthBar.style.width = `${0}%`; // Concede largura de barra de vida em 0 para efeito visual
+        chamarApi = 2;
 
         healthBar.classList.add("active");
         backgroundHealth.classList.add("active");
@@ -298,7 +301,9 @@ mySubmit.onclick = function () {
             TrackHealth(hp, hpMax);
         });
         
-    } else if (clickPhase == 3){
+    } else if (clickPhase == 3 && chamarApi == 2){
+        chamarApi = 3;
+        healthBarEnemy.style.width = `${0}%`; // Concede largura de barra de vida em 0 para efeito visual
         bleedingHealthBarEnemy.classList.add("active");
         healthBarEnemy.classList.add("active");
         backgroundHealthEnemy.classList.add("active");
@@ -354,6 +359,9 @@ mySubmit.onclick = function () {
         document.querySelector('label[for="character2"]').textContent = null;
         document.querySelector('label[for="character3"]').textContent = null;
         document.querySelector('label[for="character4"]').textContent = null;
+        setTimeout(function () { 
+            if (selectedCharacter.textContent != "Please select an enemy." && selectedCharacter.textContent != "Select a character.")
+            selectedCharacter.style.visibility = "hidden";},1500);
     }
     
     // Adicionar a classe 'active' para a div #showStatus com animação de slide down
