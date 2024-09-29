@@ -49,7 +49,6 @@
     transition: max-height 0.5s ease-out;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.55);
     background-color: rgb(73, 73, 73);
-    overflow: hidden;
 }
 #pickCharacter.shrink {
     top: -120px;
@@ -81,7 +80,6 @@
     font-size: large;
     color: white;
 }
-
 #showEnemyStatus {
     font-family: Verdana;
     font-size: large;
@@ -108,22 +106,56 @@
     height: 100%; /* Ajusta a altura para cobrir o contêiner */
     object-fit: cover; /* Ajusta a imagem para cobrir o contêiner */
 }
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 642px) {
     #C1img {
-        transform: translate(20%, 59.8%);
+        transform: translate(20%, 61.1%);
         position: fixed;
         width: 150px;
-        height: 290px;
+        height: 250px;
         left: 0%;
     }
+    #showStatus.singlePlayer {
+        gap: 70%;
+    }
+    #healthBarContainer {
+        left: 45%;
+    }
+    
 }
-@media only screen and (min-width: 481px) and (max-width: 768px) {
+@media only screen and (min-width: 643px) and (max-width: 850px) {
     #C1img {
-        transform: translate(20%, 59.8%);
+        transform: translate(20%, 57.3%);
         position: fixed;
         width: 250px;
         height: 390px;
         left: 0%;
+    }
+}
+@media only screen and (min-width: 851px) and (max-width: 1024px) {
+    #C1img {
+        transform: translate(20%, 56.5%);
+        position: fixed;
+        width: 290px;
+        height: 430px;
+        left: 5%;
+    }
+}
+@media only screen and (min-width: 1025px) and (max-width: 1366px) {
+    #C1img {
+        transform: translate(20%, 55.8%);
+        position: fixed;
+        width: 340px;
+        height: 490px;
+        left: 5%;
+    }
+}
+@media only screen and (min-width: 1367px) {
+    #C1img {
+        transform: translate(20%, 55.5%);
+        position: fixed;
+        width: 350px;
+        height: 510px;
+        left: 10%;
     }
 }
 #returnBtn {
