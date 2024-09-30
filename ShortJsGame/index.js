@@ -112,10 +112,13 @@ returnBtn.onclick = function () {
         backgroundHealth.classList.remove("active");
         energyBar.classList.remove("active");
         backgroundEnergy.classList.remove("active");
-
+        C1img.classList.remove("active");
+        
+        //  Start Esvaziando JSON personagem
         userJson = {
             "name": ""
         }
+        //  End Esvaziando JSON personagem
         fetch("https://localhost:7204/api/Personagem",{
             method: "POST",
             headers: {
@@ -158,6 +161,7 @@ returnBtn.onclick = function () {
         backgroundHealthEnemy.classList.remove("active");
         energyBarEnemy.classList.remove("active");
         backgroundEnergyEnemy.classList.remove("active");
+        C11img.classList.remove("active");
         
         radios.forEach(radio => {
             radio.classList.remove("hidden")
