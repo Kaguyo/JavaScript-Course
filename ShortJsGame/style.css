@@ -63,11 +63,11 @@
     margin: 0 auto;
     left: 0%;
     display: flex;
-    background-color: rgb(15, 0, 0);
+    background-color: rgba(0, 0, 0, 0.664);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.55);
     justify-content:space-evenly; /* Espaça os elementos filhos */
     align-items: center; /* space-aroundAlinha verticalmente no centro */
-    gap: 75%;
+    gap: 59%;
 }
 #showStatus.active {
     max-height: 60px; /* Altura final da div quando estiver visível */
@@ -108,19 +108,33 @@
 }
 @media only screen and (max-width: 642px) {
     #C1img {
-        transform: translate(20%, 61.1%);
+        transform: translate(5%, 61.6%);
         position: fixed;
         width: 150px;
         height: 250px;
         left: 0%;
     }
     #showStatus.singlePlayer {
-        gap: 70%;
+        gap: 90%;
     }
-    #healthBarContainer {
-        left: 45%;
+    #healthBarContainer.singlePlayer {
+        position: absolute;
+        left: 23.8%;
+        top: 0%;
+        transform: translate(-10%, 2320%);
+        width: 20%;
+        height: 8px;
+        border: 1px solid rgb(0, 0, 0, 0.664);
     }
-    
+    #healthBarContainer{
+        position: absolute;
+        left: 28%;
+        top: 0%;
+        transform: translate(-10%, 2320%);
+        width: 20%;
+        height: 8px;
+        border: 1px solid rgb(0, 0, 0, 0.664);
+    }
 }
 @media only screen and (min-width: 643px) and (max-width: 850px) {
     #C1img {
@@ -129,6 +143,15 @@
         width: 250px;
         height: 390px;
         left: 0%;
+    }
+    #healthBarContainer {
+        position: absolute;
+        left: 23.5%;
+        top: 0%;
+        transform: translate(-10%, 2320%);
+        width: 25%;
+        height: 8px;
+        border: 1px solid rgb(0, 0, 0, 0.664);
     }
 }
 @media only screen and (min-width: 851px) and (max-width: 1024px) {
@@ -139,6 +162,18 @@
         height: 430px;
         left: 5%;
     }
+    #showStatus.singlePlayer {
+        gap: 72%;
+    }
+    #healthBarContainer {
+        position: absolute;
+        left: 19.8%;
+        top: 0%;
+        transform: translate(-10%, 2320%);
+        width: 28%;
+        height: 8px;
+        border: 1px solid rgb(0, 0, 0, 0.664);
+    }
 }
 @media only screen and (min-width: 1025px) and (max-width: 1366px) {
     #C1img {
@@ -148,6 +183,21 @@
         height: 490px;
         left: 5%;
     }
+    #showStatus {
+        gap: 70%;
+    }
+    #healthBarContainer {
+        position: absolute;
+        left: 18.8%;
+        top: 0%;
+        transform: translate(-10%, 2320%);
+        width: 29.2%;
+        height: 8px;
+        border: 1px solid rgb(0, 0, 0, 0.664);
+    }
+    #showStatus.singlePlayer {
+        gap: 72%;
+    }
 }
 @media only screen and (min-width: 1367px) {
     #C1img {
@@ -156,6 +206,18 @@
         width: 350px;
         height: 510px;
         left: 10%;
+    }
+    #showStatus {
+        gap: 74%;
+    }
+    #healthBarContainer {
+        position: absolute;
+        left: 15.9%;
+        top: 0%;
+        transform: translate(-10%, 2320%);
+        width: 32%;
+        height: 8px;
+        border: 1px solid rgb(0, 0, 0, 0.664);
     }
 }
 #returnBtn {
@@ -175,15 +237,6 @@
 #returnBtn.hover-active:hover {
   cursor: pointer;
   background-color: rgb(170, 0, 0);
-}
-#healthBarContainer {
-    position: absolute;
-    left: 20%;
-    top: 0%;
-    transform: translate(-10%, 2320%);
-    width: 28%;
-    height: 8px;
-    border: 1px solid #000000;
 }
 #healthBar {
     height: 100%;

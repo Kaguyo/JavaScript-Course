@@ -146,6 +146,8 @@ returnBtn.onclick = function () {
     }
     else if (clickPhase == 3) {
         chamarApi = 2;
+        healthBarContainer.classList.add("singlePlayer");
+        showStatus.classList.add("singlePlayer");
         selectedCharacter.style.visibility = "visible";
         bleedingHealthBarEnemy.classList.remove("active");
         document.querySelector('label[for="character1"]').textContent = "Gepard";
@@ -267,7 +269,8 @@ mySubmit.onclick = function () {
     if (clickPhase == 2 && chamarApi == 1){
         healthBar.style.width = `${0}%`; // Concede largura de barra de vida em 0 para efeito visual
         chamarApi = 2;
-
+        healthBarContainer.classList.add("singlePlayer");
+        showStatus.classList.add("singlePlayer");
         healthBar.classList.add("active");
         backgroundHealth.classList.add("active");
         energyBar.classList.add("active");
@@ -303,6 +306,8 @@ mySubmit.onclick = function () {
         
     } else if (clickPhase == 3 && chamarApi == 2){
         chamarApi = 3;
+        healthBarContainer.classList.remove("singlePlayer");
+        showStatus.classList.remove("singlePlayer");
         healthBarEnemy.style.width = `${0}%`; // Concede largura de barra de vida em 0 para efeito visual
         bleedingHealthBarEnemy.classList.add("active");
         healthBarEnemy.classList.add("active");
