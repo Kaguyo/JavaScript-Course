@@ -86,7 +86,7 @@
     color: white;
 }
 #backgroundGif {
-    position: fixed; /* Fica fixo na tela */
+    position: absolute; /* Fica fixo na tela */
     top: 0;
     left: 0;
     width: 100vw; /* Largura da tela */
@@ -109,7 +109,7 @@
 @media only screen and (max-width: 642px) {
     #C1img {
         transform: translate(5%, 61.6%);
-        position: fixed;
+        position: absolute;
         width: 150px;
         height: 250px;
         left: 0%;
@@ -139,7 +139,7 @@
 @media only screen and (min-width: 643px) and (max-width: 850px) {
     #C1img {
         transform: translate(20%, 57.3%);
-        position: fixed;
+        position: absolute;
         width: 250px;
         height: 390px;
         left: 0%;
@@ -157,7 +157,7 @@
 @media only screen and (min-width: 851px) and (max-width: 1024px) {
     #C1img {
         transform: translate(20%, 56.5%);
-        position: fixed;
+        position: absolute;
         width: 290px;
         height: 430px;
         left: 5%;
@@ -178,7 +178,7 @@
 @media only screen and (min-width: 1025px) and (max-width: 1366px) {
     #C1img {
         transform: translate(20%, 55.8%);
-        position: fixed;
+        position: absolute;
         width: 340px;
         height: 490px;
         left: 5%;
@@ -202,10 +202,25 @@
 @media only screen and (min-width: 1367px) {
     #C1img {
         transform: translate(20%, 55.5%);
-        position: fixed;
+        position: absolute;
         width: 350px;
         height: 510px;
         left: 10%;
+        visibility: hidden;
+    }
+    #C1img.active {
+        visibility: visible;
+    }
+    #C11img {
+        transform: translate(20%, 55.5%);
+        position: absolute;
+        width: 350px;
+        height: 510px;
+        right: 20%;
+        visibility: hidden;
+    }
+    #C11img.active {
+        visibility: visible;
     }
     #showStatus {
         gap: 74%;
@@ -241,7 +256,7 @@
 #healthBar {
     height: 100%;
     background-color: rgb(41, 255, 155);
-    position: fixed;
+    position: absolute;
     z-index: 3;
     visibility: hidden;
     transition: 0.35s;
@@ -249,7 +264,7 @@
 #bleedingHealthBar{
     height: 100%;
     background-color: rgba(255, 0, 0, 0.644);
-    position: fixed;
+    position: absolute;
     width: 100%;
     z-index: 2;
 }
@@ -290,7 +305,7 @@
 #bleedingHealthBarEnemy{
     height: 100%;
     background-color: rgba(255, 0, 0, 0.644);
-    position: fixed;
+    position: absolute;
     width: 100%;
     right: -133%;
     z-index: 2;

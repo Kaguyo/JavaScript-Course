@@ -140,7 +140,6 @@ returnBtn.onclick = function () {
             speed = data.speed; 
             TrackHealth(hp, hpMax);
         });
-        
 
         selectedCharacter.textContent = "Select a character.";
     }
@@ -216,12 +215,14 @@ mySubmit.onclick = function () {
             chamarApi = 1; // Permite bater na API/Personagem
             clickPhase = 2;
             document.querySelector('p[id="showPlayerStatus"]').textContent = character;
+            C1img.classList.add("active");
         } else {
             selectedCharacter.textContent = `You have selected Gepard!`;
             enemy = "Gepard";
             clickPhase = 3;
             document.querySelector('p[id="showEnemyStatus"]').textContent = enemy;
             radios.forEach(radio => { radio.checked = false; });
+            C11img.classList.add("active");
         }
     } else if (character2.checked) {
         if (clickPhase == 1) {
@@ -230,12 +231,14 @@ mySubmit.onclick = function () {
             chamarApi = 1; // Permite bater na API/Personagem
             clickPhase = 2;
             document.querySelector('p[id="showPlayerStatus"]').textContent = character;
+            C2img.classList.add("active");
         } else {
             selectedCharacter.textContent = `You have selected Bronya!`;
             enemy = "Bronya";
             clickPhase = 3;
             document.querySelector('p[id="showEnemyStatus"]').textContent = enemy;
             radios.forEach(radio => { radio.checked = false; });
+            C21img.classList.add("active");
         }
     } else if (character3.checked) {
         if (clickPhase == 1) {
@@ -244,12 +247,14 @@ mySubmit.onclick = function () {
             chamarApi = 1; // Permite bater na API/Personagem
             clickPhase = 2;
             document.querySelector('p[id="showPlayerStatus"]').textContent = character;
+            C3img.classList.add("active");
         } else {
             selectedCharacter.textContent = `You have selected Blade!`;
             enemy = "Blade";
             clickPhase = 3;
             document.querySelector('p[id="showEnemyStatus"]').textContent = enemy;
             radios.forEach(radio => { radio.checked = false; });
+            C31img.classList.add("active");
         }
     } else if (character4.checked) {
         if (clickPhase == 1) {
@@ -258,12 +263,14 @@ mySubmit.onclick = function () {
             chamarApi = 1; // Permite bater na API/Personagem
             clickPhase = 2;
             document.querySelector('p[id="showPlayerStatus"]').textContent = character;
+            C4img.classList.add("active");
         } else {
             selectedCharacter.textContent = `You have selected Archer!`;
             enemy = "Archer";
             clickPhase = 3;
             document.querySelector('p[id="showEnemyStatus"]').textContent = enemy;
             radios.forEach(radio => { radio.checked = false; });
+            C41img.classList.add("active");
         }
     }
     if (clickPhase == 2 && chamarApi == 1){
