@@ -201,15 +201,37 @@
 }
 @media only screen and (min-width: 1367px) {
     #C1img {
-        transform: translate(20%, 55.5%);
+        transform: translate(20%, 55.7%);
         position: absolute;
         width: 350px;
         height: 510px;
-        left: 10%;
+        left: 12%;
         visibility: hidden;
     }
     #C1img.active {
         visibility: visible;
+    }
+    #characterAttacks {
+        width: 360px;
+        top: 273%;
+        height: 70px;
+        position: absolute;
+        left: 11.6%;
+        transform: translate(20%, 55.7%);
+        background-color: rgb(0, 0, 0);
+        border-radius: 4px;
+        font-size: 35px;
+        align-content: center;
+        text-align: center;
+        color: white;
+        box-shadow: 0 0 20px 10px rgba(255, 0, 0, 0.6);
+        transition: 0.2s;
+    }
+    #characterAttacks:hover {
+        background-color: rgb(134, 0, 0);
+        cursor: pointer;
+        box-shadow: 0 0 60px 30px rgba(255, 0, 0, 0.8); /* Sombra maior e mais intensa no hover */
+        text-shadow: 0 0 8px rgba(255,255,255, 1);
     }
     #C11img {
         transform: translate(20%, 55.5%);
