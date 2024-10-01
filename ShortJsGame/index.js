@@ -19,7 +19,7 @@ let ultCostEnemy;
 let energyEnemy;
 let speedEnemy;
 // Fim alocagem de atributos de personagens
-
+let collapseAttackList = false;
 let userJson = null;
 let enemyJson = null;
 let chamarApi = 0;
@@ -40,12 +40,59 @@ const radios = document.querySelectorAll('input[name="characterList"]'); // Sele
 let character = null;
 let enemy = null;
 let clickPhase = 1;
-// Adiciona evento de mudança a todos os radios
+
+// Funcoes para hovering e style CSS ￬￬
+const characterAttacks = document.getElementById("characterAttacks");
+const upSideArrow = document.getElementById("upSideArrow");
+const upSideDownArrow = document.getElementById("upSideDownArrow");
+const upSideArrowEffect = document.getElementById("upSideArrowEffect");
+const upSideArrowEffect1 = document.getElementById("upSideArrowEffect1");
+const upSideDownArrowEffect = document.getElementById("upSideDownArrowEffect");
+const upSideDownArrowEffect1 = document.getElementById("upSideDownArrowEffect1");
+
+const addHoverClasses = () => {
+    characterAttacks.classList.add("active");
+    if (!collapseAttackList) {
+        upSideArrow.classList.add("hidden");
+        upSideDownArrow.classList.add("active");
+        upSideDownArrowEffect.classList.add("active");
+        upSideDownArrowEffect1.classList.add("active");
+    } else {
+        upSideArrow.classList.remove("hidden");
+        upSideDownArrow.classList.remove("active");
+        upSideDownArrowEffect.classList.remove("active");
+        upSideDownArrowEffect1.classList.remove("active");
+        upSideArrowEffect.classList.add("active");
+        upSideArrowEffect1.classList.add("active");
+    }
+};
+const removeHoverClasses = () => {
+    characterAttacks.classList.remove("active");
+    if (!collapseAttackList) {
+        upSideArrow.classList.remove("hidden");
+        upSideDownArrow.classList.remove("active");
+        upSideDownArrowEffect.classList.remove("active");
+        upSideDownArrowEffect1.classList.remove("active");
+    } else {
+
+    }
+    
+    
+};
+characterAttacks.addEventListener('mouseenter', addHoverClasses);
+characterAttacks.addEventListener('mouseleave', removeHoverClasses);
+upSideArrow.addEventListener('mouseenter', addHoverClasses);
+upSideArrow.addEventListener('mouseleave', removeHoverClasses);
+upSideDownArrow.addEventListener('mouseenter', addHoverClasses)
+upSideDownArrow.addEventListener('mouseleave', removeHoverClasses);
+
+
+// Adiciona evento de mudança a todos os radios ￬￬
 radios.forEach((radio) => {
     radio.addEventListener("change", checkSelection);
 });
 
-// Mudar cor do BACK com base nos inputs radio
+// Mudar cor do BACK com base nos inputs radio ￬￬
 function checkSelection () {
     let isChecked = false;
     radios.forEach((radio) => {
@@ -58,6 +105,7 @@ function checkSelection () {
         returnBtn.classList.remove('hover-active');
     }
 }
+//  =========================================================
 function TrackHealth(hpParameter, hpMaxParameter) {
     let fraction = (hpParameter / hpMaxParameter) * 100;
     if (hpMaxParameter == 0) { fraction = 0 };
@@ -74,7 +122,7 @@ function TrackHealth(hpParameter, hpMaxParameter) {
 
     bleedingHealthBar.style.width = `${fraction}%`;
 }
-// =========================================================
+//  =========================================================
 function TrackHealthEnemy(hpEnemyParameter, hpMaxEnemyParameter) {
     let fractionEnemy = (hpEnemyParameter / hpMaxEnemyParameter) * 100;
     if (hpMaxEnemyParameter == 0) { fractionEnemy = 0 };
@@ -92,6 +140,10 @@ function TrackHealthEnemy(hpEnemyParameter, hpMaxEnemyParameter) {
 }
 
 // onclick functions
+characterAttacks.onclick = function () {
+    collapseAttackList = !collapseAttackList;
+    console.log(collapseAttackList);
+}
 returnBtn.onclick = function () {
     if (character1.checked || character2.checked || character3.checked || character4.checked) {
         radios.forEach((radio) => {radio.checked = false});

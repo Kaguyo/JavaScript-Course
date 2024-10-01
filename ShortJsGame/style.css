@@ -177,11 +177,14 @@
 }
 @media only screen and (min-width: 1025px) and (max-width: 1366px) {
     #C1img {
-        transform: translate(20%, 55.8%);
+        transform: translate(20%, 56.2%);
         position: absolute;
         width: 340px;
         height: 490px;
         left: 5%;
+    }
+    #C1img.active {
+        visibility: visible;
     }
     #showStatus {
         gap: 70%;
@@ -196,7 +199,7 @@
         border: 1px solid rgb(0, 0, 0, 0.664);
     }
     #showStatus.singlePlayer {
-        gap: 72%;
+        gap: 70%;
     }
 }
 @media only screen and (min-width: 1367px) {
@@ -209,6 +212,17 @@
         visibility: hidden;
     }
     #C1img.active {
+        visibility: visible;
+    }
+    #C11img {
+        transform: translate(20%, 55.7%);
+        position: absolute;
+        width: 350px;
+        height: 510px;
+        right: 20%;
+        visibility: hidden;
+    }
+    #C11img.active {
         visibility: visible;
     }
     #characterAttacks {
@@ -224,28 +238,123 @@
         align-content: center;
         text-align: center;
         color: white;
-        box-shadow: 0 0 20px 10px rgba(255, 0, 0, 0.6);
+        box-shadow: 0 0 10px 2px rgba(255, 0, 0, 0.6);
         transition: 0.2s;
     }
-    #characterAttacks:hover {
+    #characterAttacks.active {
         background-color: rgb(134, 0, 0);
         cursor: pointer;
-        box-shadow: 0 0 60px 30px rgba(255, 0, 0, 0.8); /* Sombra maior e mais intensa no hover */
-        text-shadow: 0 0 8px rgba(255,255,255, 1);
+        box-shadow: 0 0 60px 15px rgba(255, 0, 0, 0.8);
+        text-shadow: 0 0 8px rgba(255, 255, 255, 1);
     }
-    #C11img {
-        transform: translate(20%, 55.5%);
+    /* Inicio Seta Branca pra Cima */
+    #upSideArrow {
+        transition: opacity 0.2s ease;
+        cursor: pointer;
         position: absolute;
-        width: 350px;
-        height: 510px;
-        right: 20%;
-        visibility: hidden;
+        left: 11.6%;
+        top: 273%;
+        transform: translate(1100%, 55.7%);
+        font-size: 32px;
+        text-shadow: 0 0 15px rgb(255, 255, 255);
+        color: white;
     }
-    #C11img.active {
+    #upSideArrow.hidden {
+        opacity: 0;
+    }
+    /* Fim Seta Branca pra  ======================== */
+    /* Inicio Seta Azul pra cima */
+    #upSideArrowEffect {
+        pointer-events: none;
+        cursor: pointer;
+        font-size: 32px;
+        left: 11.6%;
+        top: 276%;
+        transform: translate(1377%, 55.7%) rotate(-90deg);
+        position: absolute;
+        color: rgb(0, 217, 255);
+        visibility: hidden;
+        text-shadow: 0 0 15px rgb(138, 237, 255);
+    }
+    #upSideArrowEffect1 {
+        pointer-events: none;
+        cursor: pointer;
+        font-size: 32px;
+        left: 11.6%;
+        top: 279%;
+        transform: translate(1377%, 55.7%) rotate(-90deg);
+        position: absolute;
+        color: rgb(0, 217, 255);
+        visibility: hidden;
+        text-shadow: 0 0 15px rgb(138, 237, 255);
+    }
+    #upSideArrowEffect.active {
+        top: 270%;
+        transition: 0.2s;
         visibility: visible;
     }
+    #upSideArrowEffect1.active {
+        top: 273%;
+        transition: 0.28s;
+        visibility: visible;
+    }
+    /* Fim Seta Azul pra Cima  ======================== */
+    /* Inicio Seta Branca pra Baixo */
+    #upSideDownArrow {
+        opacity: 0;
+        transition: opacity 0.2s ease;
+        cursor: pointer;
+        position: absolute;
+        top: 273%;
+        font-size: 32px;
+        transition: 0.2s opacity;
+        left: 11.6%;
+        text-shadow: 0 0 15px rgb(255, 255, 255);
+        color: white;
+        transform: translate(1100%, 55.7%);
+    }
+    #upSideDownArrow.active {
+        opacity: 1;
+    }
+    /* Fim Seta Branca pra Baixo  ======================== */
+    /* Inicio Seta Azul pra Baixo */
+    #upSideDownArrowEffect {
+        pointer-events: none;
+        cursor: pointer;
+        font-size: 32px;
+        left: 11.6%;
+        top: 279%;
+        transform: translate(1390%, 30.7%) rotate(90deg);
+        position: absolute;
+        color: rgb(0, 217, 255);
+        visibility: hidden;
+        text-shadow: 0 0 15px rgb(138, 237, 255);
+    }
+    #upSideDownArrowEffect1 {
+        pointer-events: none;
+        cursor: pointer;
+        font-size: 32px;
+        left: 11.6%;
+        top: 283%;
+        transform: translate(1390%, 30.7%) rotate(90deg);
+        position: absolute;
+        color: rgb(0, 217, 255);
+        visibility: hidden;
+        text-shadow: 0 0 15px rgb(138, 237, 255);
+    }
+    #upSideDownArrowEffect.active {
+        top: 282%;
+        visibility: visible;
+        transition: 0.2s;
+    }
+    #upSideDownArrowEffect1.active {
+        top: 287%;
+        visibility: visible;
+        transition: 0.28s;
+    }
+    /* Fim Seta Azul pra Baixo  ======================== */
     #showStatus {
-        gap: 74%;
+        gap: 78%;
     }
     #healthBarContainer {
         position: absolute;
