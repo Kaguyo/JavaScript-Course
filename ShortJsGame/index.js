@@ -19,7 +19,7 @@ let ultCostEnemy;
 let energyEnemy;
 let speedEnemy;
 // Fim alocagem de atributos de personagens
-let collapseAttackList = false;
+let collapseAttackList = 1;
 let userJson = null;
 let enemyJson = null;
 let chamarApi = 0;
@@ -52,29 +52,30 @@ const upSideDownArrowEffect1 = document.getElementById("upSideDownArrowEffect1")
 
 const addHoverClasses = () => {
     characterAttacks.classList.add("active");
-    if (!collapseAttackList) {
+    if (collapseAttackList == 1) { // Aponta pra baixo
         upSideArrow.classList.add("hidden");
         upSideDownArrow.classList.add("active");
         upSideDownArrowEffect.classList.add("active");
         upSideDownArrowEffect1.classList.add("active");
-    } else {
+    } else { // Aponta pra cima
         upSideArrow.classList.remove("hidden");
         upSideDownArrow.classList.remove("active");
-        upSideDownArrowEffect.classList.remove("active");
-        upSideDownArrowEffect1.classList.remove("active");
         upSideArrowEffect.classList.add("active");
         upSideArrowEffect1.classList.add("active");
     }
 };
 const removeHoverClasses = () => {
     characterAttacks.classList.remove("active");
-    if (!collapseAttackList) {
+    if (collapseAttackList == 1) {
         upSideArrow.classList.remove("hidden");
         upSideDownArrow.classList.remove("active");
         upSideDownArrowEffect.classList.remove("active");
         upSideDownArrowEffect1.classList.remove("active");
     } else {
-
+        upSideArrow.classList.add("hidden");
+        upSideDownArrow.classList.add("active");
+        upSideArrowEffect.classList.remove("active");
+        upSideArrowEffect1.classList.remove("active");
     }
     
     
@@ -141,8 +142,15 @@ function TrackHealthEnemy(hpEnemyParameter, hpMaxEnemyParameter) {
 
 // onclick functions
 characterAttacks.onclick = function () {
-    collapseAttackList = !collapseAttackList;
-    console.log(collapseAttackList);
+    if (collapseAttackList == 1) {
+        removeHoverClasses();
+        collapseAttackList = 2;
+        addHoverClasses();
+    } else { 
+        removeHoverClasses();
+        collapseAttackList = 1;
+        addHoverClasses();
+    }
 }
 returnBtn.onclick = function () {
     if (character1.checked || character2.checked || character3.checked || character4.checked) {

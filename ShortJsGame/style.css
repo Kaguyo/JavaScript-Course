@@ -249,6 +249,7 @@
     }
     /* Inicio Seta Branca pra Cima */
     #upSideArrow {
+        pointer-events: none;
         transition: opacity 0.2s ease;
         cursor: pointer;
         position: absolute;
@@ -289,18 +290,19 @@
         text-shadow: 0 0 15px rgb(138, 237, 255);
     }
     #upSideArrowEffect.active {
-        top: 270%;
+        top: 259%;
         transition: 0.2s;
         visibility: visible;
     }
     #upSideArrowEffect1.active {
-        top: 273%;
+        top: 264%;
         transition: 0.28s;
         visibility: visible;
     }
     /* Fim Seta Azul pra Cima  ======================== */
     /* Inicio Seta Branca pra Baixo */
     #upSideDownArrow {
+        pointer-events: none;
         opacity: 0;
         transition: opacity 0.2s ease;
         cursor: pointer;
