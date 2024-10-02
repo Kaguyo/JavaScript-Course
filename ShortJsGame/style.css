@@ -1,4 +1,9 @@
-
+.no-select {
+    -webkit-user-select: none; /* Chrome, Safari, Opera */
+    -moz-user-select: none;    /* Firefox */
+    -ms-user-select: none;     /* Internet Explorer/Edge */
+    user-select: none;         /* Standard */
+}
 #character1.hidden{
     visibility: hidden;
 }
@@ -48,7 +53,7 @@
     top: 0%;
     transition: max-height 0.5s ease-out;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.55);
-    background-color: rgb(73, 73, 73);
+    background-color: rgb(75, 75, 74);
 }
 #pickCharacter.shrink {
     top: -120px;
@@ -61,10 +66,9 @@
     opacity: 0; /* Invisível com transição */
     width: 100%;
     margin: 0 auto;
-    left: 0%;
     display: flex;
-    background-color: rgba(0, 0, 0, 0.664);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.55);
+    background-color: rgb(19, 19, 19);
+    box-shadow: 0 10px 25px rgb(0, 0, 0);
     justify-content:space-evenly; /* Espaça os elementos filhos */
     align-items: center; /* space-aroundAlinha verticalmente no centro */
     gap: 59%;
@@ -74,7 +78,26 @@
     visibility: visible; /* Visível quando ativa */
     opacity: 1; /* Visível com transição */
 }
-
+#backgroundGif {
+    position: fixed; /* Fica fixo na tela */
+    top: 0;
+    left: 0;
+    width: 100%; /* Largura da tela */
+    height: 100%; /* Altura da tela */
+    overflow: hidden; /* Oculta qualquer overflow */
+    z-index: -1; /* Fica atrás do conteúdo */
+    background-color: rgba(0, 0, 0, 0.8); /* Fundo opcional para cobrir áreas não preenchidas */
+}
+/* Configuração da imagem dentro do contêiner do GIF */
+#backgroundGif img {
+    position: fixed; /* Posiciona a imagem dentro do contêiner */
+    top: 50%; /* Centraliza verticalmente */
+    left: 50%; /* Centraliza horizontalmente */
+    transform: translate(-50%, -50%); /* Ajusta o posicionamento para centralizar */
+    width: 100%; /* Ajusta a largura para cobrir o contêiner */
+    height: 100%; /* Ajusta a altura para cobrir o contêiner */
+    object-fit: cover; /* Ajusta a imagem para cobrir o contêiner */
+}
 #showPlayerStatus {
     font-family: Verdana;
     font-size: large;
@@ -84,27 +107,6 @@
     font-family: Verdana;
     font-size: large;
     color: white;
-}
-#backgroundGif {
-    position: absolute; /* Fica fixo na tela */
-    top: 0;
-    left: 0;
-    width: 100vw; /* Largura da tela */
-    height: 100vh; /* Altura da tela */
-    overflow: hidden; /* Oculta qualquer overflow */
-    z-index: -1; /* Fica atrás do conteúdo */
-    background-color: rgba(0, 0, 0, 0.8); /* Fundo opcional para cobrir áreas não preenchidas */
-}
-
-/* Configuração da imagem dentro do contêiner do GIF */
-#backgroundGif img {
-    position: absolute; /* Posiciona a imagem dentro do contêiner */
-    top: 50%; /* Centraliza verticalmente */
-    left: 50%; /* Centraliza horizontalmente */
-    transform: translate(-50%, -50%); /* Ajusta o posicionamento para centralizar */
-    width: 100%; /* Ajusta a largura para cobrir o contêiner */
-    height: 100%; /* Ajusta a altura para cobrir o contêiner */
-    object-fit: cover; /* Ajusta a imagem para cobrir o contêiner */
 }
 @media only screen and (max-width: 642px) {
     #C1img {
@@ -202,6 +204,9 @@
         gap: 70%;
     }
 }
+/*  ============================  */
+/*  Inicio media query >= 1367px  */
+/*  ============================  */
 @media only screen and (min-width: 1367px) {
     #C1img {
         transform: translate(20%, 55.7%);
@@ -225,12 +230,35 @@
     #C11img.active {
         visibility: visible;
     }
+    #C2img {
+        transform: translate(20%, 55.7%);
+        position: absolute;
+        width: 350px;
+        height: 510px;
+        left: 12%;
+        visibility: hidden;
+    }
+    #C2img.active {
+        visibility: visible;
+    }
+    #C21img {
+        transform: translate(20%, 55.7%);
+        position: absolute;
+        width: 350px;
+        height: 510px;
+        right: 20%;
+        visibility: hidden;
+    }
+    #C21img.active {
+        visibility: visible;
+    }
     #characterAttacks {
+        z-index: 1;
         width: 360px;
         top: 273%;
         height: 70px;
         position: absolute;
-        left: 11.6%;
+        left: 11.5%;
         transform: translate(20%, 55.7%);
         background-color: rgb(0, 0, 0);
         border-radius: 4px;
@@ -247,8 +275,49 @@
         box-shadow: 0 0 60px 15px rgba(255, 0, 0, 0.8);
         text-shadow: 0 0 8px rgba(255, 255, 255, 1);
     }
+    #attackListContainer {
+        display: flex;
+        flex-direction: column;
+        visibility: hidden;
+        transition: 0.15s ease;
+        z-index: 0;
+        top: 273%;
+        left: 11.5%;
+        transform: translate(20%, 55.7%);
+        position: absolute;
+        height: 70px;
+        width: 360px;
+        border-radius: 4px;
+        background-color: rgb(0, 0, 0);
+    }
+    #attackListContainer.active {
+        visibility: visible;
+        top: 298.5%;
+    }
+    #button1Atk {
+        width: 100%;
+        background-color: rgb(24, 24, 24);
+        font-size: 24px;
+        
+        color: rgb(255, 255, 255);
+    }
+    #button2Atk {
+        width: 100%;
+        background-color: rgb(24, 24, 24);
+        font-size: 24px;
+        
+        color: rgb(255, 255, 255);
+    }
+    #button3Atk {
+        width: 100%;
+        background-color: rgb(24, 24, 24);
+        font-size: 24px;
+        
+        color: rgb(255, 255, 255);
+    }
     /* Inicio Seta Branca pra Cima */
     #upSideArrow {
+        z-index: 1;
         pointer-events: none;
         transition: opacity 0.2s ease;
         cursor: pointer;
@@ -266,6 +335,7 @@
     /* Fim Seta Branca pra  ======================== */
     /* Inicio Seta Azul pra cima */
     #upSideArrowEffect {
+        z-index: 1;
         pointer-events: none;
         cursor: pointer;
         font-size: 32px;
@@ -278,6 +348,7 @@
         text-shadow: 0 0 15px rgb(138, 237, 255);
     }
     #upSideArrowEffect1 {
+        z-index: 1;
         pointer-events: none;
         cursor: pointer;
         font-size: 32px;
@@ -302,6 +373,7 @@
     /* Fim Seta Azul pra Cima  ======================== */
     /* Inicio Seta Branca pra Baixo */
     #upSideDownArrow {
+        z-index: 1;
         pointer-events: none;
         opacity: 0;
         transition: opacity 0.2s ease;
@@ -321,6 +393,7 @@
     /* Fim Seta Branca pra Baixo  ======================== */
     /* Inicio Seta Azul pra Baixo */
     #upSideDownArrowEffect {
+        z-index: 1;
         pointer-events: none;
         cursor: pointer;
         font-size: 32px;
@@ -333,6 +406,7 @@
         text-shadow: 0 0 15px rgb(138, 237, 255);
     }
     #upSideDownArrowEffect1 {
+        z-index: 1;
         pointer-events: none;
         cursor: pointer;
         font-size: 32px;
@@ -367,6 +441,7 @@
         height: 8px;
         border: 1px solid rgb(0, 0, 0, 0.664);
     }
+/*  Fim media query >= 1367px */
 }
 #returnBtn {
     position: relative;

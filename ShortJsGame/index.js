@@ -23,6 +23,7 @@ let collapseAttackList = 1;
 let userJson = null;
 let enemyJson = null;
 let chamarApi = 0;
+const attackListContainer = document.getElementById("attackListContainer");
 const healthBar = document.getElementById("healthBar");
 const healthBarEnemy = document.getElementById("healthBarEnemy");
 const bleedingHealthBarEnemy = document.getElementById("bleedingHealthBarEnemy");
@@ -141,15 +142,17 @@ function TrackHealthEnemy(hpEnemyParameter, hpMaxEnemyParameter) {
 }
 
 // onclick functions
-characterAttacks.onclick = function () {
+const ClickATK = characterAttacks.onclick = function () {
     if (collapseAttackList == 1) {
         removeHoverClasses();
         collapseAttackList = 2;
         addHoverClasses();
+        attackListContainer.classList.add("active");
     } else { 
         removeHoverClasses();
         collapseAttackList = 1;
         addHoverClasses();
+        attackListContainer.classList.remove("active");
     }
 }
 returnBtn.onclick = function () {
@@ -157,6 +160,14 @@ returnBtn.onclick = function () {
         radios.forEach((radio) => {radio.checked = false});
     }
     else if (clickPhase == 2) {
+        if (collapseAttackList != 1) {
+            ClickATK();
+            removeHoverClasses();
+        }
+        C1img.classList.remove("active");
+        C2img.classList.remove("active");
+        /*C3img.classList.remove("active");
+        C4img.classList.remove("active");*/
         clickPhase = 1;
         character = null;
 
@@ -207,6 +218,10 @@ returnBtn.onclick = function () {
         selectedCharacter.textContent = "Select a character.";
     }
     else if (clickPhase == 3) {
+        C11img.classList.remove("active");
+        C21img.classList.remove("active");
+        /*C31img.classList.remove("active");
+        C41img.classList.remove("active");*/
         chamarApi = 2;
         healthBarContainer.classList.add("singlePlayer");
         showStatus.classList.add("singlePlayer");
@@ -280,6 +295,9 @@ mySubmit.onclick = function () {
             clickPhase = 2;
             document.querySelector('p[id="showPlayerStatus"]').textContent = character;
             C1img.classList.add("active");
+            document.getElementById("button1Atk").textContent = "Basic Attack";
+            document.getElementById("button2Atk").textContent = "Ghost Excalibur";
+            document.getElementById("button3Atk").textContent = "Excalibur";
         } else {
             selectedCharacter.textContent = `You have selected Gepard!`;
             enemy = "Gepard";
