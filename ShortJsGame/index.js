@@ -142,7 +142,7 @@ function TrackHealthEnemy(hpEnemyParameter, hpMaxEnemyParameter) {
 }
 
 // onclick functions
-const ClickATK = characterAttacks.onclick = function () {
+characterAttacks.onclick = function () {
     if (collapseAttackList == 1) {
         removeHoverClasses();
         collapseAttackList = 2;
@@ -161,7 +161,10 @@ returnBtn.onclick = function () {
     }
     else if (clickPhase == 2) {
         if (collapseAttackList != 1) {
-            ClickATK();
+            removeHoverClasses();
+            collapseAttackList = 1;
+            addHoverClasses();
+            attackListContainer.classList.remove("active");
             removeHoverClasses();
         }
         C1img.classList.remove("active");
