@@ -23,6 +23,9 @@ let collapseAttackList = 1;
 let userJson = null;
 let enemyJson = null;
 let chamarApi = 0;
+const button1Atk = document.getElementById("button1Atk");
+        const button2Atk = document.getElementById("button2Atk");
+        const button3Atk = document.getElementById("button3Atk");
 const attackListContainer = document.getElementById("attackListContainer");
 const healthBar = document.getElementById("healthBar");
 const healthBarEnemy = document.getElementById("healthBarEnemy");
@@ -154,7 +157,17 @@ characterAttacks.onclick = function () {
         addHoverClasses();
         attackListContainer.classList.remove("active");
     }
+    if (collapseAttackList == 2) {
+        button1Atk.classList.add("active");
+        button2Atk.classList.add("active");
+        button3Atk.classList.add("active");
+    } else {
+        button1Atk.classList.remove("active");
+        button2Atk.classList.remove("active");
+        button3Atk.classList.remove("active");
+    }
 }
+    
 returnBtn.onclick = function () {
     if (character1.checked || character2.checked || character3.checked || character4.checked) {
         radios.forEach((radio) => {radio.checked = false});

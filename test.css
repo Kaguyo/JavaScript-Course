@@ -1,0 +1,12 @@
+.button-container {
+    display: grid;
+    position: absolute;
+    top: 10%; /* Posicionado no final da página */
+    max-height: 50px; /* Define uma altura máxima quando expandido */
+    overflow: hidden; /* Esconde o conteúdo que ultrapassar a altura máxima */
+    transition: max-height 0.5s ease-in-out; /* Transição suave na altura */
+  }
+  
+  .button-container.collapse {
+    max-height: 0; /* Altura mínima quando recolhido */
+  }
