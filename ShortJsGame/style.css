@@ -243,6 +243,17 @@
     #C21img.active {
         visibility: visible;
     }
+    #C3img {
+        transform: translate(20%, 56.5%);
+        position: absolute;
+        width: 290px;
+        height: 450px;
+        left: 6%;
+        visibility: collapse;
+    }
+    #C3img.active {
+        visibility: visible;
+    }
     #characterAttacks {
         z-index: 1;
         width: 305px;
@@ -283,15 +294,20 @@
         max-height: 300px;
         visibility: visible;
     }
-    #button1Atk, #button2Atk, #button3Atk {
+    #attackListContainer.fourAttacks {
+        top: 262.5%;
+    }
+    #button1Atk, #button2Atk, #button3Atk, #button4Atk {
         width: 100%;
         transition: 0.1s;
         background-color: rgb(24, 24, 24);
         font-size: 0px;
         color: rgb(255, 255, 255);
+        visibility: collapse;
     }
-    #button1Atk.active, #button2Atk.active, #button3Atk.active {
+    #button1Atk.active, #button2Atk.active, #button3Atk.active, #button4Atk.active {
         font-size: 21px;
+        visibility: visible;
     }
     /* Inicio Seta Branca pra Cima */
     #upSideArrow {
@@ -433,7 +449,7 @@
         width: 350px;
         height: 510px;
         left: 10%;
-        visibility: hidden;
+        visibility: collapse;
     }
     #C1img.active {
         visibility: visible;
@@ -444,7 +460,7 @@
         width: 350px;
         height: 510px;
         right: 10%;
-        visibility: hidden;
+        visibility: collapse;
     }
     #C11img.active {
         visibility: visible;
@@ -455,7 +471,7 @@
         width: 350px;
         height: 510px;
         left: 10%;
-        visibility: hidden;
+        visibility: collapse;
     }
     #C2img.active {
         visibility: visible;
@@ -466,7 +482,7 @@
         width: 350px;
         height: 510px;
         right: 10%;
-        visibility: hidden;
+        visibility: collapse;
     }
     #C21img.active {
         visibility: visible;
@@ -488,6 +504,17 @@
         box-shadow: 0 0 10px 2px rgba(255, 0, 0, 0.6);
         transition: 0.2s;
     }
+    #C3img {
+        transform: translate(20%, 55.7%);
+        position: absolute;
+        width: 350px;
+        height: 510px;
+        left: 10%;
+        visibility: collapse;
+    }
+    #C3img.active {
+        visibility: visible;
+    }
     #characterAttacks.active {
         background-color: rgb(134, 0, 0);
         cursor: pointer;
@@ -507,19 +534,23 @@
         border-radius: 4px;
         background-color: rgb(0, 0, 0);
     }
+    #attackListContainer.fourAttacks {
+        top: 285%;
+    }
     #attackListContainer.active {
         max-height: 500px;
         visibility: visible;
     }
-    #button1Atk, #button2Atk, #button3Atk {
+    #button1Atk, #button2Atk, #button3Atk, #button4Atk {
         width: 100%;
         transition: 0.1s;
         background-color: rgb(24, 24, 24);
         font-size: 0px;
         color: rgb(255, 255, 255);
     }
-    #button1Atk.active, #button2Atk.active, #button3Atk.active {
+    #button1Atk.active, #button2Atk.active, #button3Atk.active, #button4Atk.active {
         font-size: 24px;
+        visibility: visible;
     }
     /* Inicio Seta Branca pra Cima */
     #upSideArrow {

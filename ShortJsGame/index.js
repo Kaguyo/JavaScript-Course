@@ -145,7 +145,8 @@ function TrackHealthEnemy(hpEnemyParameter, hpMaxEnemyParameter) {
 }
 
 // onclick functions
-characterAttacks.onclick = function () {
+const ClickAtk = characterAttacks.onclick = function () {
+    
     if (collapseAttackList == 1) {
         removeHoverClasses();
         collapseAttackList = 2;
@@ -157,14 +158,25 @@ characterAttacks.onclick = function () {
         addHoverClasses();
         attackListContainer.classList.remove("active");
     }
+    if ((character == "Kafka") && collapseAttackList == 2) {
+        attackListContainer.classList.add("fourAttacks");
+    } else if ((character == "Kafka") && collapseAttackList == 1) {
+        attackListContainer.classList.remove("fourAttacks");
+    }
     if (collapseAttackList == 2) {
         button1Atk.classList.add("active");
         button2Atk.classList.add("active");
         button3Atk.classList.add("active");
+        if (document.getElementById("button4Atk")) {
+            button4Atk.classList.add("active");
+        }
     } else {
         button1Atk.classList.remove("active");
         button2Atk.classList.remove("active");
         button3Atk.classList.remove("active");
+        if (document.getElementById("button4Atk")) {
+            button4Atk.classList.remove("active");
+        }
     }
 }
     
@@ -174,16 +186,16 @@ returnBtn.onclick = function () {
     }
     else if (clickPhase == 2) {
         if (collapseAttackList != 1) {
+            ClickAtk();
             removeHoverClasses();
-            collapseAttackList = 1;
-            addHoverClasses();
-            attackListContainer.classList.remove("active");
-            removeHoverClasses();
+        }
+        if (document.getElementById("button4Atk")) {
+            button4Atk.remove();
         }
         C1img.classList.remove("active");
         C2img.classList.remove("active");
-        /*C3img.classList.remove("active");
-        C4img.classList.remove("active");*/
+        C3img.classList.remove("active");
+        /*C4img.classList.remove("active");*/
         clickPhase = 1;
         character = null;
 
@@ -199,7 +211,6 @@ returnBtn.onclick = function () {
         backgroundHealth.classList.remove("active");
         energyBar.classList.remove("active");
         backgroundEnergy.classList.remove("active");
-        C1img.classList.remove("active");
         
         //  Start Esvaziando JSON personagem
         userJson = {
@@ -330,6 +341,9 @@ mySubmit.onclick = function () {
             clickPhase = 2;
             document.querySelector('p[id="showPlayerStatus"]').textContent = character;
             C2img.classList.add("active");
+            document.getElementById("button1Atk").textContent = "Basic Attack";
+            document.getElementById("button2Atk").textContent = "Mana Loading";
+            document.getElementById("button3Atk").textContent = "Fetch Failnaught";
         } else {
             selectedCharacter.textContent = `You have selected Bronya!`;
             enemy = "Bronya";
@@ -346,6 +360,14 @@ mySubmit.onclick = function () {
             clickPhase = 2;
             document.querySelector('p[id="showPlayerStatus"]').textContent = character;
             C3img.classList.add("active");
+            document.getElementById("button1Atk").textContent = "Basic Attack";
+            document.getElementById("button2Atk").textContent = "Depriving Web";
+            const button4Atk = document.createElement("button");
+            button4Atk.textContent = "Twilight Ray Fall";
+            button4Atk.id = "button4Atk";
+            attackListContainer.appendChild(button4Atk);
+            attackListContainer.classList.add("kafka")
+            document.getElementById("button3Atk").textContent = "Mana Loading";
         } else {
             selectedCharacter.textContent = `You have selected Blade!`;
             enemy = "Blade";
