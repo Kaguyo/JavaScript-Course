@@ -1,1 +1,14 @@
 ShortJsGame/src/
+ShortJsGame/BackEnd/bin
+ShortJsGame/BackEnd/obj
+ShortJsGame/BackEnd/Properties
+ShortJsGame/BackEnd/appsettings.Development.json
+ShortJsGame/BackEnd/appsettings.json
+ShortJsGame/BackEnd/BackEnd.csproj
+ShortJsGame/BackEnd/BackEnd.csproj.user
+ShortJsGame/BackEnd/BackEnd.sln
+.csproj
+.csproj.user
+.bin
+.obj
+.Properties
