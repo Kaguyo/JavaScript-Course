@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace JavaSNaFrenteCsharpAtras.Controllers
+namespace BackEnd.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

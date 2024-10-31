@@ -217,7 +217,7 @@ returnBtn.onclick = function () {
             "name": ""
         }
         //  End Esvaziando JSON personagem
-        fetch("https://localhost:7204/api/Personagem",{
+        fetch("http://localhost:5119/api/Personagem",{
             method: "POST",
             headers: {
                 "Content-Type":"application/json"
@@ -274,7 +274,7 @@ returnBtn.onclick = function () {
         enemyJson = {
             "name": ""
         }
-        fetch("https://localhost:7204/api/Inimigo",{
+        fetch("http://localhost:5119/api/Inimigo",{
             method: "POST",
             headers: {
                 "Content-Type":"application/json"
@@ -406,7 +406,7 @@ mySubmit.onclick = function () {
         userJson = {
             "name": character
         }
-        fetch("https://localhost:7204/api/Personagem",{
+        fetch("http://localhost:5119/api/Personagem",{
             method: "POST",
             headers: {
                 "Content-Type":"application/json"
@@ -445,7 +445,7 @@ mySubmit.onclick = function () {
         enemyJson = {
             "name": enemy
         }
-        fetch("https://localhost:7204/api/Inimigo",{
+        fetch("http://localhost:5119/api/Inimigo",{
             method: "POST",
             headers: {
                 "Content-Type":"application/json"
