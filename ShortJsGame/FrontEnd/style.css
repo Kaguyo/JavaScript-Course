@@ -148,7 +148,7 @@
 /*  Inicio media query >= 643px <= 850px  */
 /*  ===================================== */
 @media only screen and (min-width: 643px) and (max-width: 850px) {
-    #C1img {
+    #C1img, #C2img, #C3img {
         transform: translate(20%, 57.5%);
         position: absolute;
         width: 245px;
@@ -156,10 +156,11 @@
         left: -2%;
         visibility: collapse;
     }
-    #C1img.active {
+    #C1img.active, #C2img.active, #C3img.active {
+        z-index: 3;
         visibility: visible;
     }
-    #C11img {
+    #C11img, #C21img, #C31img {
         transform: translate(-20%, 57.5%);
         position: absolute;
         width: 245px;
@@ -167,44 +168,12 @@
         right: -2%;
         visibility: collapse;
     }
-    #C11img.active {
-        visibility: visible;
-    }
-    #C2img {
-        transform: translate(20%, 57.5%);
-        position: absolute;
-        width: 245px;
-        height: 385px;
-        left: -2%;
-        visibility: collapse;
-    }
-    #C2img.active {
-        visibility: visible;
-    }
-    #C21img {
-        transform: translate(-20%, 57.5%);
-        position: absolute;
-        width: 245px;
-        height: 385px;
-        right: -2%;
-        visibility: collapse;
-    }
-    #C21img.active {
-        visibility: visible;
-    }
-    #C3img {
-        transform: translate(20%, 57.5%);
-        position: absolute;
-        width: 245px;
-        height: 385px;
-        left: -2%;
-        visibility: collapse;
-    }
-    #C3img.active {
+    #C11img.active, #C21img.active, #C31img.active {
+        z-index: 3;
         visibility: visible;
     }
     #characterAttacks {
-        z-index: 1;
+        z-index: 4;
         width: 260px;
         top: 229.5%;
         height: 55px;
@@ -227,6 +196,7 @@
         text-shadow: 0 0 8px rgba(255, 255, 255, 1);
     }
     #attackListContainer {
+        z-index: 1;
         display: grid;
         transition: max-height 0.9s ease, visibility 0.9;
         top: 242%;
@@ -244,7 +214,8 @@
         visibility: visible;
     }
     #attackListContainer.fourAttacks {
-        top: 262.5%;
+        top: 235.5%;
+        z-index: 1;
     }
     #button1Atk, #button2Atk, #button3Atk, #button4Atk {
         width: 100%;
@@ -260,7 +231,7 @@
     }
     /* Inicio Seta Branca pra Cima */
     #upSideArrow {
-        z-index: 1;
+        z-index: 5;
         pointer-events: none;
         transition: opacity 0.2s ease;
         cursor: pointer;
@@ -278,7 +249,7 @@
     /* Fim Seta Branca pra  ======================== */
     /* Inicio Seta Azul pra cima */
     #upSideArrowEffect {
-        z-index: 1;
+        z-index: 5;
         pointer-events: none;
         cursor: pointer;
         font-size: 27px;
@@ -291,7 +262,7 @@
         text-shadow: 0 0 15px rgb(138, 237, 255);
     }
     #upSideArrowEffect1 {
-        z-index: 1;
+        z-index: 5;
         pointer-events: none;
         cursor: pointer;
         font-size: 27px;
@@ -316,7 +287,7 @@
     /* Fim Seta Azul pra Cima  ======================== */
     /* Inicio Seta Branca pra Baixo */
     #upSideDownArrow {
-        z-index: 1;
+        z-index: 5;
         pointer-events: none;
         opacity: 0;
         transition: opacity 0.2s ease;
@@ -336,7 +307,7 @@
     /* Fim Seta Branca pra Baixo  ======================== */
     /* Inicio Seta Azul pra Baixo */
     #upSideDownArrowEffect {
-        z-index: 1;
+        z-index: 5;
         pointer-events: none;
         cursor: pointer;
         font-size: 27px;
@@ -349,7 +320,7 @@
         text-shadow: 0 0 15px rgb(138, 237, 255);
     }
     #upSideDownArrowEffect1 {
-        z-index: 1;
+        z-index: 5;
         pointer-events: none;
         cursor: pointer;
         font-size: 27px;
@@ -392,7 +363,7 @@
 /*  Inicio media query >= 851px <= 1024px  */
 /*  ====================================== */
 @media only screen and (min-width: 851px) and (max-width: 1024px) {
-    #C1img {
+    #C1img, #C2img, #C3img {
         transform: translate(20%, 56.5%);
         position: absolute;
         width: 290px;
@@ -400,10 +371,10 @@
         left: 6%;
         visibility: collapse;
     }
-    #C1img.active {
+    #C1img.active, #C2img.active, #C3img.active {
         visibility: visible;
     }
-    #C11img {
+    #C11img, #C21img, #C31img {
         transform: translate(-20%, 56.5%);
         position: absolute;
         width: 290px;
@@ -411,40 +382,7 @@
         right: 6%;
         visibility: collapse;
     }
-    #C11img.active {
-        visibility: visible;
-    }
-    #C2img {
-        transform: translate(20%, 56.5%);
-        position: absolute;
-        width: 290px;
-        height: 450px;
-        left: 6%;
-        visibility: collapse;
-    }
-    #C2img.active {
-        visibility: visible;
-    }
-    #C21img {
-        transform: translate(-20%, 56.5%);
-        position: absolute;
-        width: 290px;
-        height: 450px;
-        right: 6%;
-        visibility: collapse;
-    }
-    #C21img.active {
-        visibility: visible;
-    }
-    #C3img {
-        transform: translate(20%, 56.5%);
-        position: absolute;
-        width: 290px;
-        height: 450px;
-        left: 6%;
-        visibility: collapse;
-    }
-    #C3img.active {
+    #C11img.active, #C21img.active, #C31img.active {
         visibility: visible;
     }
     #characterAttacks {
@@ -453,8 +391,8 @@
         top: 250%;
         height: 65px;
         position: absolute;
-        left: 5.2%;
-        transform: translate(20%, 56.5%);
+        left: 6%;
+        transform: translate(16.5%, 56.5%);
         background-color: rgb(0, 0, 0);
         border-radius: 4px;
         font-size: 30px;
@@ -474,8 +412,8 @@
         display: grid;
         transition: max-height 0.9s ease, visibility 0.9;
         top: 268.5%;
-        left: 5.2%;
-        transform: translate(20%, 56.5%);
+        left: 6%;
+        transform: translate(16.5%, 56.5%);
         position: absolute;
         max-height: 0;
         width: 305px;
@@ -540,7 +478,7 @@
         cursor: pointer;
         font-size: 32px;
         left: 1.5%;
-        top: 249%;
+        top: 240%;
         transform: translate(1377%, 56.5%) rotate(-90deg);
         position: absolute;
         color: rgb(0, 217, 255);
@@ -598,7 +536,7 @@
         cursor: pointer;
         font-size: 32px;
         left: 1.5%;
-        top: 247%;
+        top: 257%;
         transform: translate(1390%, 30.7%) rotate(90deg);
         position: absolute;
         color: rgb(0, 217, 255);
