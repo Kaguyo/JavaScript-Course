@@ -20,12 +20,13 @@ let energyEnemy;
 let speedEnemy;
 // Fim alocagem de atributos de personagens
 let collapseAttackList = 1;
+let collapseEnemyInfo = 1;
 let userJson = null;
 let enemyJson = null;
 let chamarApi = 0;
 const button1Atk = document.getElementById("button1Atk");
-        const button2Atk = document.getElementById("button2Atk");
-        const button3Atk = document.getElementById("button3Atk");
+const button2Atk = document.getElementById("button2Atk");
+const button3Atk = document.getElementById("button3Atk");
 const attackListContainer = document.getElementById("attackListContainer");
 const healthBar = document.getElementById("healthBar");
 const healthBarEnemy = document.getElementById("healthBarEnemy");
@@ -44,7 +45,6 @@ const radios = document.querySelectorAll('input[name="characterList"]'); // Sele
 let character = null;
 let enemy = null;
 let clickPhase = 1;
-
 // Funcoes para hovering e style CSS ￬￬
 const characterAttacks = document.getElementById("characterAttacks");
 const upSideArrow = document.getElementById("upSideArrow");
@@ -53,6 +53,13 @@ const upSideArrowEffect = document.getElementById("upSideArrowEffect");
 const upSideArrowEffect1 = document.getElementById("upSideArrowEffect1");
 const upSideDownArrowEffect = document.getElementById("upSideDownArrowEffect");
 const upSideDownArrowEffect1 = document.getElementById("upSideDownArrowEffect1");
+const enemyContainer = document.getElementById("enemyContainer");
+const upSideArrowEnemy = document.getElementById("upSideArrowEnemy");
+const upSideDownArrowEnemy = document.getElementById("upSideDownArrowEnemy");
+const upSideArrowEffectEnemy = document.getElementById("upSideArrowEffectEnemy");
+const upSideArrowEffect1Enemy = document.getElementById("upSideArrowEffect1Enemy");
+const upSideDownArrowEffectEnemy = document.getElementById("upSideDownArrowEffectEnemy");
+const upSideDownArrowEffect1Enemy = document.getElementById("upSideDownArrowEffect1Enemy");
 
 const addHoverClasses = () => {
     characterAttacks.classList.add("active");
@@ -81,16 +88,40 @@ const removeHoverClasses = () => {
         upSideArrowEffect.classList.remove("active");
         upSideArrowEffect1.classList.remove("active");
     }
-    
-    
+};
+const addHoverClassesEnemy = () => {
+    enemyContainer.classList.add("active");
+    if (collapseEnemyInfo == 1) { // Aponta pra baixo
+        upSideArrowEnemy.classList.remove("active");
+        upSideDownArrowEnemy.classList.add("active");
+        upSideDownArrowEffectEnemy.classList.add("active");
+        upSideDownArrowEffect1Enemy.classList.add("active");
+    } else { // Aponta pra cima
+        upSideArrowEnemy.classList.add("active");
+        upSideDownArrowEnemy.classList.remove("active");
+        upSideArrowEffectEnemy.classList.add("active");
+        upSideArrowEffect1Enemy.classList.add("active");
+    }
+};
+const removeHoverClassesEnemy = () => {
+    enemyContainer.classList.remove("active");
+    if (collapseEnemyInfo == 1) {
+        upSideArrowEnemy.classList.add("active");
+        upSideDownArrowEnemy.classList.remove("active");
+        upSideDownArrowEffectEnemy.classList.remove("active");
+        upSideDownArrowEffect1Enemy.classList.remove("active");
+    } else {
+        upSideArrowEnemy.classList.remove("active");
+        upSideDownArrowEnemy.classList.add("active");
+        upSideArrowEffectEnemy.classList.remove("active");
+        upSideArrowEffect1Enemy.classList.remove("active");
+    }
 };
 characterAttacks.addEventListener('mouseenter', addHoverClasses);
 characterAttacks.addEventListener('mouseleave', removeHoverClasses);
-upSideArrow.addEventListener('mouseenter', addHoverClasses);
-upSideArrow.addEventListener('mouseleave', removeHoverClasses);
-upSideDownArrow.addEventListener('mouseenter', addHoverClasses)
-upSideDownArrow.addEventListener('mouseleave', removeHoverClasses);
-
+// EnemyListeners
+enemyContainer.addEventListener('mouseenter', addHoverClassesEnemy);
+enemyContainer.addEventListener('mouseleave', removeHoverClassesEnemy);
 
 // Adiciona evento de mudança a todos os radios ￬￬
 radios.forEach((radio) => {
@@ -146,7 +177,6 @@ function TrackHealthEnemy(hpEnemyParameter, hpMaxEnemyParameter) {
 
 // onclick functions
 const ClickAtk = characterAttacks.onclick = function () {
-    
     if (collapseAttackList == 1) {
         removeHoverClasses();
         collapseAttackList = 2;
@@ -179,7 +209,19 @@ const ClickAtk = characterAttacks.onclick = function () {
         }
     }
 }
-    
+enemyContainer.onclick = function () {
+    if (collapseEnemyInfo == 1) {
+        removeHoverClassesEnemy();
+        collapseEnemyInfo = 2;
+        addHoverClassesEnemy();
+        enemyDetailsList.classList.add("active");
+    } else { 
+        removeHoverClassesEnemy();
+        collapseEnemyInfo = 1;
+        addHoverClassesEnemy();
+        enemyDetailsList.classList.remove("active");
+    }
+}    
 returnBtn.onclick = function () {
     if (character1.checked || character2.checked || character3.checked || character4.checked) {
         radios.forEach((radio) => {radio.checked = false});
@@ -263,7 +305,10 @@ returnBtn.onclick = function () {
         backgroundHealthEnemy.classList.remove("active");
         energyBarEnemy.classList.remove("active");
         backgroundEnergyEnemy.classList.remove("active");
-        C11img.classList.remove("active");
+        enemyContainer.classList.remove("selected");
+        upSideArrowEnemy.classList.remove("active");
+        upSideDownArrowEnemy.classList.remove("active");
+        collapseEnemyInfo = 1;
         
         radios.forEach(radio => {
             radio.classList.remove("hidden")
@@ -298,8 +343,9 @@ returnBtn.onclick = function () {
             speedEnemy = data.speed;
             TrackHealthEnemy(hpEnemy, hpMaxEnemy); 
         });
-        
-
+        if (enemy == null) {
+            document.getElementById("enemyContainer").classList.remove("Selected");
+        }
         selectedCharacter.textContent = "Please select an enemy.";
     }
     if (clickPhase == 1){
@@ -441,10 +487,10 @@ mySubmit.onclick = function () {
         backgroundHealthEnemy.classList.add("active");
         energyBarEnemy.classList.add("active");
         backgroundEnergyEnemy.classList.add("active");
-
         enemyJson = {
             "name": enemy
         }
+
         fetch("http://localhost:5119/api/Inimigo",{
             method: "POST",
             headers: {
@@ -493,7 +539,10 @@ mySubmit.onclick = function () {
         document.querySelector('label[for="character4"]').textContent = null;
         setTimeout(function () { 
             if (selectedCharacter.textContent != "Please select an enemy." && selectedCharacter.textContent != "Select a character.")
-            selectedCharacter.style.visibility = "hidden";},1500);
+            selectedCharacter.style.visibility = "hidden";
+        },1500);
+        enemyContainer.classList.add("selected");
+        upSideArrowEnemy.classList.add("active");
     }
     
     // Adicionar a classe 'active' para a div #showStatus com animação de slide down
