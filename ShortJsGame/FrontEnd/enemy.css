@@ -21,35 +21,6 @@
         opacity: 1;
         visibility: visible;
     }
-    #enemyContainer {
-        z-index: 4;
-        width: 260px;
-        visibility: collapse;
-        top: 229.5%;
-        height: 55px;
-        position: absolute;
-        right: -3.4%;
-        transform: translate(-20%, 57.5%);
-        background-color: rgb(0, 0, 0);
-        border-radius: 4px;
-        font-size: 25px;
-        align-content: center;
-        text-align: center;
-        color: white;
-        opacity: 0;
-        box-shadow: 0 0 10px 2px rgba(255, 0, 0, 0.6);
-        transition: 0.2s;
-    }
-    #enemyContainer.selected {
-        opacity: 1;
-        visibility: visible;
-    }
-    #enemyContainer.active {
-        background-color: rgb(134, 0, 0);
-        cursor: pointer;
-        box-shadow: 0 0 60px 15px rgba(255, 0, 0, 0.8);
-        text-shadow: 0 0 8px rgba(255, 255, 255, 1);
-    }
     /* Inicio Seta Branca pra Cima */
     #upSideArrowEnemy {
         z-index: 5;
@@ -167,6 +138,66 @@
         top: 241%;
         visibility: visible;
         transition: 0.28s;
+    }
+    #enemyContainer {
+        z-index: 4;
+        width: 260px;
+        visibility: collapse;
+        top: 229.5%;
+        height: 55px;
+        position: absolute;
+        right: -3.4%;
+        transform: translate(-20%, 57.5%);
+        background-color: rgb(0, 0, 0);
+        border-radius: 4px;
+        font-size: 25px;
+        align-content: center;
+        text-align: center;
+        color: white;
+        opacity: 0;
+        box-shadow: 0 0 10px 2px rgba(255, 0, 0, 0.6);
+        transition: 0.2s;
+    }
+    #enemyContainer.selected {
+        opacity: 1;
+        visibility: visible;
+    }
+    #enemyContainer.active {
+        background-color: rgb(134, 0, 0);
+        cursor: pointer;
+        box-shadow: 0 0 60px 15px rgba(255, 0, 0, 0.8);
+        text-shadow: 0 0 8px rgba(255, 255, 255, 1);
+    }
+    #enemyInfo {
+        z-index: 1;
+        display: grid;
+        transition: max-height 0.9s, visibility 0.9s;
+        top: 240%;
+        right: -3.2%;
+        transform: translate(-20%, 57.5%);
+        position: absolute;
+        max-height: 0px;
+        width: 258px;
+        background-color: rgb(0, 0, 0);
+        visibility: collapse;
+        gap: 0;
+    }
+    #enemyInfo.active {
+        visibility: visible;
+        max-height: 300px;
+    }
+    #spdDataEnemy, #defDataEnemy, #atkDataEnemy {
+        position: relative;
+        z-index: 0;
+        color: rgb(255, 255, 255);
+        background-color: rgb(24, 24, 24);
+        font-size: 0px;
+        transition: 0.15s;
+        margin: 1px;
+        padding-left: 10px;
+    }
+    #spdDataEnemy.active, #defDataEnemy.active, #atkDataEnemy.active {
+        font-size: 27px;
     }
     /* Fim Seta Azul pra Baixo  ======================== */
 }

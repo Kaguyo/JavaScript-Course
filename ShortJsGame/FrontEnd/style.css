@@ -68,7 +68,6 @@
     display: flex;
     background-color: rgb(19, 19, 19);
     box-shadow: 0 10px 25px rgb(0, 0, 0);
-    justify-content:space-around;
     align-items: center; /* space-around Alinha verticalmente no centro */
 }
 #showStatus.active {
@@ -179,7 +178,7 @@
     #attackListContainer {
         z-index: 1;
         display: grid;
-        transition: max-height 0.9s ease, visibility 0.9;
+        transition: max-height 0.9s ease, visibility 0.9s;
         top: 242%;
         left: -3.2%;
         transform: translate(20%, 57.5%);
@@ -332,9 +331,6 @@
         width: 32%;
         height: 8px;
         border: 1px solid rgb(0, 0, 0, 0.664);
-    }
-    #showStatus {
-        gap: 86%;
     }
     /*  =================================== */
     /*  Fim media query >= 643px <= 850px   */

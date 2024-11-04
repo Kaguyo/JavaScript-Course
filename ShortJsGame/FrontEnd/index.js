@@ -60,6 +60,10 @@ const upSideArrowEffectEnemy = document.getElementById("upSideArrowEffectEnemy")
 const upSideArrowEffect1Enemy = document.getElementById("upSideArrowEffect1Enemy");
 const upSideDownArrowEffectEnemy = document.getElementById("upSideDownArrowEffectEnemy");
 const upSideDownArrowEffect1Enemy = document.getElementById("upSideDownArrowEffect1Enemy");
+const spdDataEnemy = document.getElementById("spdDataEnemy");
+const atkDataEnemy = document.getElementById("atkDataEnemy");
+const defDataEnemy = document.getElementById("defDataEnemy");
+const enemyInfo = document.getElementById("enemyInfo");
 
 const addHoverClasses = () => {
     characterAttacks.classList.add("active");
@@ -214,12 +218,19 @@ enemyContainer.onclick = function () {
         removeHoverClassesEnemy();
         collapseEnemyInfo = 2;
         addHoverClassesEnemy();
-        enemyDetailsList.classList.add("active");
+        atkDataEnemy.classList.add("active");
+        defDataEnemy.classList.add("active");
+        spdDataEnemy.classList.add("active");
+        enemyInfo.classList.add("active");
+        console.log("adiciona");
     } else { 
         removeHoverClassesEnemy();
         collapseEnemyInfo = 1;
         addHoverClassesEnemy();
-        enemyDetailsList.classList.remove("active");
+        atkDataEnemy.classList.remove("active");
+        defDataEnemy.classList.remove("active");
+        spdDataEnemy.classList.remove("active");
+        enemyInfo.classList.remove("active");
     }
 }    
 returnBtn.onclick = function () {
@@ -309,6 +320,10 @@ returnBtn.onclick = function () {
         upSideArrowEnemy.classList.remove("active");
         upSideDownArrowEnemy.classList.remove("active");
         collapseEnemyInfo = 1;
+        enemyInfo.classList.remove("active");
+        spdDataEnemy.classList.remove("active");
+        atkDataEnemy.classList.remove("active");
+        defDataEnemy.classList.remove("active");
         
         radios.forEach(radio => {
             radio.classList.remove("hidden")
