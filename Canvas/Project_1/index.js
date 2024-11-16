@@ -63,7 +63,8 @@ let characterFrame = 1;
 let characterIdle = "inhale";
 let keys = {
     a: false,
-    d: false
+    d: false,
+    w: false
 };
 let drawImage1 = true;
 let drawImage2 = true;
@@ -86,7 +87,7 @@ class Seele {
     static allowRun7 = false;
     static allowRun8 = false;
     
-    static speed = 22;
+    static speed = 25;
 
     static adjustMap = 0;
     static adjustMap2 = 0;
@@ -103,21 +104,6 @@ class Seele {
         if (readRun) {
             if (keys.a){
                 this.x -= Seele.speed * this.speedModifier;
-                if (this.x <= 400 & Layer.x2 > 0){
-                    this.x = 400;
-                    layers.forEach((layer) => {
-                        layer.x -= Seele.speed * layer.speedModifier;
-                        if (layer.x < 0){
-                            layer.x < 0;   
-                        }
-                    });
-                    layersReversed.forEach((layer) => {
-                        layer.x -= Seele.speed * layer.speedModifier;
-                        if (layer.x){
-                            layer.x < 0;
-                        }
-                    });
-                }
                 if (this.x < 60) { this.x = 60 }
                 seeleArrayObjectIdle.forEach((object) => {
                     object.x = this.x;
@@ -129,28 +115,28 @@ class Seele {
                     object.x = this.x;
                 });
                 if (this.id == 1) {
-                    this.gameFrame += 0.1 * this.speedModifier* (Seele.speed / 20);
+                    this.gameFrame += 0.1 * this.speedModifier * (Seele.speed / 20);
                     if (this.gameFrame >= 2){
                         this.gameFrame = 1;
                         Seele.allowRun5 = false;
                         Seele.allowRun6 = true;
                     }
                 } else if (this.id == 2) {
-                    this.gameFrame += 0.1 * this.speedModifier * (Seele.speed / 20);
+                    this.gameFrame += 0.07 * this.speedModifier * (Seele.speed / 20);
                     if (this.gameFrame >= 3){
                         this.gameFrame = 2;
                         Seele.allowRun6 = false;
                         Seele.allowRun7 = true;
                     }
-                }  else if (this.id == 3) {
-                    this.gameFrame += 0.7 * this.speedModifier * (Seele.speed / 20);
+                } else if (this.id == 3) {
+                    this.gameFrame += 0.07 * this.speedModifier * (Seele.speed / 20);
                     if (this.gameFrame >= 4){
                         this.gameFrame = 3;
                         Seele.allowRun7 = false;
                         Seele.allowRun8 = true;
                     }
-                }   else if (this.id == 4) {
-                    this.gameFrame += 0.7 * this.speedModifier * (Seele.speed / 20);
+                } else if (this.id == 4) {
+                    this.gameFrame += 0.07 * this.speedModifier * (Seele.speed / 20);
                     if (this.gameFrame >= 5){
                         this.gameFrame = 4;
                         Seele.allowRun5 = true;
@@ -181,7 +167,7 @@ class Seele {
                         Seele.allowRun2 = true;
                     }
                 } else if (this.id == 2) {
-                    this.gameFrame += 0.1 * this.speedModifier * (Seele.speed / 20);
+                    this.gameFrame += 0.07 * this.speedModifier * (Seele.speed / 20);
                     if (this.gameFrame >= 3){
                         this.gameFrame = 2;
                         Seele.allowRun2 = false;
@@ -203,8 +189,7 @@ class Seele {
                     }
                 }
             }
-        }
-        else if (characterIdle == "inhale") {
+        } else if (characterIdle == "inhale") {
             this.gameFrame += this.speed;
             if (this.id == 1 && this.gameFrame >= 2) {
                 this.gameFrame = 1;
@@ -217,20 +202,21 @@ class Seele {
                 characterFrame = 4;
             } else if (this.id == 4 && this.gameFrame >= 5) {
                 this.gameFrame = 4;
-                characterFrame = 3;
                 characterIdle = "exhale";
             }
         } else if (characterIdle == "exhale") {
             this.gameFrame -= this.speed;
-            if (this.id == 3 && this.gameFrame <= 2) {
-            this.gameFrame = 3;
-            characterFrame = 2;
+            if (this.id == 4 && this.gameFrame <= 3){
+                this.gameFrame = 4;
+                characterFrame = 3;
+            } else if (this.id == 3 && this.gameFrame <= 2) {
+                this.gameFrame = 3;
+                characterFrame = 2;
             } else if (this.id == 2 && this.gameFrame <= 1) {
                 this.gameFrame = 2;
                 characterFrame = 1;
             } else if (this.id == 1 && this.gameFrame <= 0) {
                 this.gameFrame = 1;
-                characterFrame = 2;
                 characterIdle = "inhale";
             }
         } 
@@ -256,7 +242,6 @@ class Layer {
         this.x += Seele.adjustMap * this.speedModifier;
         if (this.x >= 3840) {
             if (this.x > 3840) this.x = 3840;
-            console.log(this.x, this.id);
             if (this.id == 1) {
                 this.x = 0;
             } else if (this.id == 2) {
@@ -300,20 +285,24 @@ const seeleArrayObjectIdle = [
     seeleObject1, 
     seeleObject2, 
     seeleObject3,
-    seeleObject4, 
+    seeleObject4,
+    seeleObject13,
+    seeleObject14,
+    seeleObject15,
+    seeleObject16, 
 ];
 const seeleArrayObjectRun = [seeleObject5, seeleObject6, seeleObject7, seeleObject8];
 const seeleArrayObjectRunReversed = [seeleObject9, seeleObject10, seeleObject11, seeleObject12];
 
-const layer1 = new Layer(backgroundLayer1, 0.5, 1, CANVAS_WIDTH);
-const layer2 = new Layer(backgroundLayer2, 0.5, 2, CANVAS_WIDTH);
-const layer3 = new Layer(backgroundLayer3, 0.5, 3, CANVAS_WIDTH);
-const layer4 = new Layer(backgroundLayer4, 0.5, 4, CANVAS_WIDTH);
+const layer1 = new Layer(backgroundLayer1, 1, 1, CANVAS_WIDTH);
+const layer2 = new Layer(backgroundLayer2, 1, 2, CANVAS_WIDTH);
+const layer3 = new Layer(backgroundLayer3, 1, 3, CANVAS_WIDTH);
+const layer4 = new Layer(backgroundLayer4, 1, 4, CANVAS_WIDTH);
 
-const layer5 = new Layer(backgroundLayer5, 0.5, 5, 0);
-const layer6 = new Layer(backgroundLayer6, 0.5, 6, 0);
-const layer7 = new Layer(backgroundLayer7, 0.5, 7, 0);
-const layer8 = new Layer(backgroundLayer8, 0.5, 8, 0);
+const layer5 = new Layer(backgroundLayer5, 1, 5, 0);
+const layer6 = new Layer(backgroundLayer6, 1, 6, 0);
+const layer7 = new Layer(backgroundLayer7, 1, 7, 0);
+const layer8 = new Layer(backgroundLayer8, 1, 8, 0);
 
 const layers = [layer1, layer2, layer3, layer4, layer5, layer6, layer7, layer8];
 const layersReversed = [layer5, layer6, layer7, layer8];
@@ -321,32 +310,31 @@ const layersReversed = [layer5, layer6, layer7, layer8];
 let reminder = false;
 let toLeft = false;
 document.addEventListener("keydown", (e) => {
+    //  Run Left
     if (e.key === "a") {
         readRun = true;
         keys.a = true;
+        toLeft = true;
         if (keys.d) { 
             keys.d = false;
             reminder = true;
-            Seele.adjustMap = 0;
         }
+        Seele.adjustMap = 0;
     }
+    //  Run Right
     if (e.key === "d") {
         readRun = true;
         keys.d = true;
+        toLeft = false;
         if (keys.a) { 
             keys.a = false;
             reminder = true;
-            Seele.adjustMap = 0;
         }
+        Seele.adjustMap2 = 0;
     }
+    //  Jump
     if (e.key === "w") {
-        readRun = true;
-        keys.d = true;
-        if (keys.a) { 
-            keys.a = false;
-            reminder = true;
-            Seele.adjustMap = 0;
-        }
+        readRun = false;
     }
 });
 document.addEventListener("keyup", (e) => {
@@ -357,13 +345,17 @@ document.addEventListener("keyup", (e) => {
     } else if (e.key === "a") {
         keys.a = false;
         toLeft = true;
+        Seele.adjustMap2 = 0;
     }
     if (e.key === "d" && reminder){
         keys.d = false;
         keys.a = true;
         reminder = false;
+    } else if (e.key === "d") {
+        keys.d = false;
         toLeft = false;
-    } else if (e.key === "d") keys.d = false;
+        Seele.adjustMap = 0;
+    }
     if (!keys.d && !keys.a) readRun = false;
 });
 
@@ -374,40 +366,7 @@ function animate() {
         element.draw();
     });
     if (readRun){
-        if (keys.d){
-            seeleArrayObjectRun.forEach((object) => {
-                if (object.id == 1 && object.gameFrame < 2 && Seele.allowRun1){
-                    object.update(seeleArrayObjectIdle, 
-                    seeleArrayObjectRunReversed, 
-                    seeleArrayObjectRun);
-                    object.draw();
-                } else if (object.id == 2 
-                && object.gameFrame < 3 
-                && object.gameFrame >= 2
-                && Seele.allowRun2){
-                    object.update(seeleArrayObjectIdle,
-                    seeleArrayObjectRunReversed, 
-                    seeleArrayObjectRun);
-                    object.draw();
-                } else if (object.id == 3
-                && object.gameFrame < 4
-                && object.gameFrame >= 3
-                && Seele.allowRun3){
-                    object.update(seeleArrayObjectIdle,
-                    seeleArrayObjectRunReversed, 
-                    seeleArrayObjectRun);
-                    object.draw();
-                } else if (object.id == 4
-                && object.gameFrame < 5
-                && object.gameFrame >= 4
-                && Seele.allowRun4){
-                    object.update(seeleArrayObjectIdle,
-                    seeleArrayObjectRunReversed, 
-                    seeleArrayObjectRun);
-                    object.draw();
-                }
-            });
-        } else if (keys.a){
+        if (keys.a){
             seeleArrayObjectRunReversed.forEach((object) => {
                 if (object.id == 1 && object.gameFrame < 2 && Seele.allowRun5){
                     object.update(seeleArrayObjectIdle, 
@@ -440,9 +399,50 @@ function animate() {
                     object.draw();
                 }
             });
+        } else if (keys.d){
+            seeleArrayObjectRun.forEach((object) => {
+                if (object.id == 1 && object.gameFrame < 2 && Seele.allowRun1){
+                    object.update(seeleArrayObjectIdle, 
+                    seeleArrayObjectRunReversed, 
+                    seeleArrayObjectRun);
+                    object.draw();
+                } else if (object.id == 2 
+                && object.gameFrame < 3 
+                && object.gameFrame >= 2
+                && Seele.allowRun2){
+                    object.update(seeleArrayObjectIdle,
+                    seeleArrayObjectRunReversed, 
+                    seeleArrayObjectRun);
+                    object.draw();
+                } else if (object.id == 3
+                && object.gameFrame < 4
+                && object.gameFrame >= 3
+                && Seele.allowRun3){
+                    object.update(seeleArrayObjectIdle,
+                    seeleArrayObjectRunReversed, 
+                    seeleArrayObjectRun);
+                    object.draw();
+                } else if (object.id == 4
+                && object.gameFrame < 5
+                && object.gameFrame >= 4
+                && Seele.allowRun4){
+                    object.update(seeleArrayObjectIdle,
+                    seeleArrayObjectRunReversed, 
+                    seeleArrayObjectRun);
+                    object.draw();
+                }
+            });
         }
-    }
-    else if (characterIdle == "inhale") {
+    } else if (characterIdle == "inhale") {
+        Seele.allowRun1 = true;
+        Seele.allowRun2 = false;
+        Seele.allowRun3 = false;
+        Seele.allowRun4 = false;
+        Seele.allowRun5 = true;
+        Seele.allowRun6 = false;
+        Seele.allowRun7 = false;
+        Seele.allowRun8 = false;
+
         Seele.adjustMap = 0;
         if (characterFrame == 1) {
             if (!toLeft) {
@@ -486,8 +486,27 @@ function animate() {
             }
         }
     } else if (characterIdle == "exhale") {
+        Seele.allowRun1 = true;
+        Seele.allowRun2 = false;
+        Seele.allowRun3 = false;
+        Seele.allowRun4 = false;
+        Seele.allowRun5 = true;
+        Seele.allowRun6 = false;
+        Seele.allowRun7 = false;
+        Seele.allowRun8 = false;
+
         Seele.adjustMap = 0;
-        if (characterFrame == 3) {
+        if(characterFrame == 4){
+            if (!toLeft) {
+                seeleObject4.draw();
+                seeleObject4.update();
+                seeleObject16.update();
+            } else {
+                seeleObject16.draw();
+                seeleObject16.update();
+                seeleObject4.update();
+            }
+        } else if (characterFrame == 3) {
             if (!toLeft) {
                 seeleObject3.draw();
                 seeleObject3.update();
@@ -497,8 +516,7 @@ function animate() {
                 seeleObject15.update();
                 seeleObject3.update();
             }
-        }
-         else if (characterFrame == 2) {
+        } else if (characterFrame == 2) {
             if (!toLeft) {
                 seeleObject2.draw();
                 seeleObject2.update();
