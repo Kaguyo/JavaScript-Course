@@ -242,8 +242,8 @@ class Layer {
     }
     update(){
         this.x += Seele.adjustMap * this.speedModifier;
+        Layer.x2 += Seele.adjustMap 
         if (this.x >= 3840) {
-            if (this.x > 3840) this.x = 3840;
             if (this.id == 1) {
                 this.x = 0;
             } else if (this.id == 2) {
@@ -296,17 +296,18 @@ const seeleArrayObjectIdle = [
 const seeleArrayObjectRun = [seeleObject5, seeleObject6, seeleObject7, seeleObject8];
 const seeleArrayObjectRunReversed = [seeleObject9, seeleObject10, seeleObject11, seeleObject12];
 
-const layer1 = new Layer(backgroundLayer1, 0.3, 1, CANVAS_WIDTH);
-const layer2 = new Layer(backgroundLayer2, 0.5, 2, CANVAS_WIDTH);
-const layer3 = new Layer(backgroundLayer3, 0.7, 3, CANVAS_WIDTH);
-const layer4 = new Layer(backgroundLayer4, 0.9, 4, CANVAS_WIDTH);
+const layer1 = new Layer(backgroundLayer1, 0.2, 1, CANVAS_WIDTH);
+const layer2 = new Layer(backgroundLayer2, 0.4, 2, CANVAS_WIDTH);
+const layer3 = new Layer(backgroundLayer3, 0.6, 3, CANVAS_WIDTH);
+const layer4 = new Layer(backgroundLayer4, 0.8, 4, CANVAS_WIDTH);
 
-const layer5 = new Layer(backgroundLayer5, 0.3, 5, 0);
-const layer6 = new Layer(backgroundLayer6, 0.5, 6, 0);
-const layer7 = new Layer(backgroundLayer7, 0.7, 7, 0);
-const layer8 = new Layer(backgroundLayer8, 0.9, 8, 0);
+const layer5 = new Layer(backgroundLayer5, 0.2, 5, 0);
+const layer6 = new Layer(backgroundLayer6, 0.4, 6, 0);
+const layer7 = new Layer(backgroundLayer7, 0.6, 7, 0);
+const layer8 = new Layer(backgroundLayer8, 0.8, 8, 0);
 
-const layers = [layer1, layer2, layer3, layer4, layer5, layer6, layer7, layer8];
+const allLayers = [layer1, layer5, layer2, layer6, layer3, layer7, layer4, layer8];
+const layers = [layer1, layer2, layer3, layer4];
 const layersReversed = [layer5, layer6, layer7, layer8];
 
 let reminder = false;
@@ -373,9 +374,9 @@ document.addEventListener("keyup", (e) => {
 
 function animate() {
     ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-    layers.forEach(element => {
-        element.update();
-        element.draw();
+    allLayers.forEach((layer) => {
+        layer.update();
+        layer.draw();
     });
     if (keys.w){
         if (grounded) Seele.axisY -= 27;
