@@ -76,6 +76,7 @@ let drawImage7 = false;
 let drawImage8 = false;
 
 let readRun = false;
+let fall = false;
 
 class Seele {
     static allowRun1 = true;
@@ -86,8 +87,9 @@ class Seele {
     static allowRun6 = false;
     static allowRun7 = false;
     static allowRun8 = false;
-    
-    static speed = 25;
+
+    static speed = 20;
+    static axisY = 630;
 
     static adjustMap = 0;
     static adjustMap2 = 0;
@@ -222,7 +224,7 @@ class Seele {
         } 
     }
     draw() {
-        ctx.drawImage(this.image, this.x, 630);
+        ctx.drawImage(this.image, this.x, Seele.axisY);
     }
 }
 class Layer {
@@ -294,21 +296,23 @@ const seeleArrayObjectIdle = [
 const seeleArrayObjectRun = [seeleObject5, seeleObject6, seeleObject7, seeleObject8];
 const seeleArrayObjectRunReversed = [seeleObject9, seeleObject10, seeleObject11, seeleObject12];
 
-const layer1 = new Layer(backgroundLayer1, 1, 1, CANVAS_WIDTH);
-const layer2 = new Layer(backgroundLayer2, 1, 2, CANVAS_WIDTH);
-const layer3 = new Layer(backgroundLayer3, 1, 3, CANVAS_WIDTH);
-const layer4 = new Layer(backgroundLayer4, 1, 4, CANVAS_WIDTH);
+const layer1 = new Layer(backgroundLayer1, 0.3, 1, CANVAS_WIDTH);
+const layer2 = new Layer(backgroundLayer2, 0.5, 2, CANVAS_WIDTH);
+const layer3 = new Layer(backgroundLayer3, 0.7, 3, CANVAS_WIDTH);
+const layer4 = new Layer(backgroundLayer4, 0.9, 4, CANVAS_WIDTH);
 
-const layer5 = new Layer(backgroundLayer5, 1, 5, 0);
-const layer6 = new Layer(backgroundLayer6, 1, 6, 0);
-const layer7 = new Layer(backgroundLayer7, 1, 7, 0);
-const layer8 = new Layer(backgroundLayer8, 1, 8, 0);
+const layer5 = new Layer(backgroundLayer5, 0.3, 5, 0);
+const layer6 = new Layer(backgroundLayer6, 0.5, 6, 0);
+const layer7 = new Layer(backgroundLayer7, 0.7, 7, 0);
+const layer8 = new Layer(backgroundLayer8, 0.9, 8, 0);
 
 const layers = [layer1, layer2, layer3, layer4, layer5, layer6, layer7, layer8];
 const layersReversed = [layer5, layer6, layer7, layer8];
 
 let reminder = false;
 let toLeft = false;
+let grounded = true;
+let groundedKey = false;
 document.addEventListener("keydown", (e) => {
     //  Run Left
     if (e.key === "a") {
@@ -334,9 +338,10 @@ document.addEventListener("keydown", (e) => {
     }
     //  Jump
     if (e.key === "w") {
-        readRun = false;
+        keys.w = true;
     }
 });
+
 document.addEventListener("keyup", (e) => {
     if (e.key === "a" && reminder){
         keys.a = false;
@@ -356,6 +361,13 @@ document.addEventListener("keyup", (e) => {
         toLeft = false;
         Seele.adjustMap = 0;
     }
+    if (e.key === "w"){
+        keys.w = false;
+        grounded = false;
+        if (groundedKey) {
+            grounded = true;
+        }
+    }
     if (!keys.d && !keys.a) readRun = false;
 });
 
@@ -365,6 +377,17 @@ function animate() {
         element.update();
         element.draw();
     });
+    if (keys.w){
+        if (grounded) Seele.axisY -= 27;
+        if (Seele.axisY <= 250){
+            Seele.axisY = 250;
+            keys.w = false;
+            grounded = false;
+        } 
+    } else if (Seele.axisY < 630){
+        Seele.axisY += 23;
+        if (Seele.axisY > 630) Seele.axisY = 630;
+    } if (Seele.axisY == 630) groundedKey = true;
     if (readRun){
         if (keys.a){
             seeleArrayObjectRunReversed.forEach((object) => {
@@ -433,6 +456,7 @@ function animate() {
                 }
             });
         }
+    
     } else if (characterIdle == "inhale") {
         Seele.allowRun1 = true;
         Seele.allowRun2 = false;
