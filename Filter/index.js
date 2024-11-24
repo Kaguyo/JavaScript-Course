@@ -47,12 +47,12 @@ class Freezer {
     }
 }
 class Characters {
-    constructor(name, race, form = "Base", technique = "None", powerUsage = 0){
+    constructor(name, race, form = "Base", technique2 = "None", powerUsage = 0){
         this.name = name;
         this.race = race;
         this.form = form;
         this.powerUsage = powerUsage;
-        this.technique = technique;
+        this.technique = technique2;
     }
     set technique(value){
         if (value == "Kaioken"){
@@ -129,9 +129,9 @@ class Characters {
         return this._powerLevel;
     }
 }
-const freezer = new Freezer("Freezer","Fourth", 1);
+const freezer = new Freezer("Freezer","Fourth", 100);
 
-const goku = new Characters("Goku", "Saiyan", "Super Saiyan", "Kaioken x2");
+const goku = new Characters("Goku", "Saiyan", "Super Saiyan", "Kaioken xjksw");
 const vegeta = new Characters("Vegeta", "Saiyan", "Super Saiyan");
 const picolo = new Characters("Picolo", "Namekuseijin");
 const gohan = new Characters("Gohan", "Saiyan");
