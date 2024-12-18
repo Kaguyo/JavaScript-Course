@@ -33,6 +33,8 @@ function invertArray(Array){
     });
 }
 
+console.log(studentsUpper);
+
 console.log(invertedStudents);
 console.log(invertedStudents2);
 
