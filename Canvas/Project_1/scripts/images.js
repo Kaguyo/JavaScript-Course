@@ -21,24 +21,24 @@ class Layer {
         ctx.drawImage(this.image, canvas.width - this.x, 0);
     }
     update(){
-        this.x += Character.adjustMap * this.speedModifier;
+        this.x += CharacterModel.adjustMap * this.speedModifier;
         if (this.x >= 3840) {
-            if (this.id == 1) {
-                this.x = 0;
-            } else if (this.id == 2) {
-                this.x = 0;
-            } else if (this.id == 3) {
-                this.x = 0;
-            } else if (this.id == 4) {
-                this.x = 0;
-            } else if (this.id == 5) {
-                this.x = 0;
-            } else if (this.id == 6) {
-                this.x = 0;
-            } else if (this.id == 7) {
-                this.x = 0;
-            } else if (this.id == 8) {
-                this.x = 0;
+            if (this.id == 1){
+                this.x = this.x - 3840;
+            } else if (this.id == 2){
+                this.x = this.x - 3840;
+            } else if (this.id == 3){
+                this.x = this.x - 3840;
+            } else if (this.id == 4){
+                this.x = this.x - 3840;
+            } else if (this.id == 5){
+                this.x = this.x - 3840;
+            } else if (this.id == 6){
+                this.x = this.x - 3840;
+            } else if (this.id == 7){
+                this.x = this.x - 3840;
+            } else if (this.id == 8){
+                this.x = this.x - 3840;
             } 
         }
     }

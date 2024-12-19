@@ -1,91 +1,91 @@
 const canvas = document.getElementById('canvas1');
 const ctx = canvas.getContext('2d');
 const CANVAS_WIDTH = canvas.width = 1920;
-const CANVAS_HEIGHT = canvas.height = 1120;
+const CANVAS_HEIGHT = canvas.height = 1080;
 
-function animate() {
+function animate(){
     ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
     allLayers.forEach((layer) => {
         layer.draw();
         layer.update();        
     });
-    if (keys.l && Character.AxisY == 630){
-        Character.Speed = 40;
+    if (keys.l && CharacterModel.AxisY == 630){
+        CharacterModel.Speed = 40;
         if (toLeft){
-            Character.AxisX -= Character.Speed;
-            if (Character.AxisX < 60)
-                Character.AxisX = 60;
+            CharacterModel.AxisX -= CharacterModel.Speed;
+            if (CharacterModel.AxisX < 60)
+                CharacterModel.AxisX = 60;
         } else if (!toLeft){
-            Character.AxisX += Character.Speed;
-            if (Character.AxisX > 1100){
-                Character.adjustMap = Character.AxisX - 1100;
-                Character.AxisX = 1100;
+            CharacterModel.AxisX += CharacterModel.Speed;
+            if (CharacterModel.AxisX > 1100){
+                CharacterModel.adjustMap = CharacterModel.AxisX - 1100;
+                CharacterModel.AxisX = 1100;
             }
         }
         characterIdle = "none"
     } else if (!keys.l) {
-        Character.Speed = 20;
+        CharacterModel.Speed = 20;
     }
     // Jump     ================================
     if (keys.w){
-        if (grounded) Character.AxisY -= 27;
-        if (Character.AxisY <= 250){
-            Character.AxisY = 250;
+        if (grounded) CharacterModel.AxisY -= 27;
+        if (CharacterModel.AxisY <= 250){
+            CharacterModel.AxisY = 250;
             keys.w = false;
             grounded = false;
         } 
-    } else if (Character.AxisY < 630){
-        Character.AxisY += 17;
-        if (Character.AxisY > 630) Character.AxisY = 630;
-    } if (Character.AxisY == 630) groundedKey = true;
+    } else if (CharacterModel.AxisY < 630){
+        CharacterModel.AxisY += 17;
+        if (CharacterModel.AxisY > 630) CharacterModel.AxisY = 630;
+    } if (CharacterModel.AxisY == 630) groundedKey = true;
     // End Jump ================================
     if (readRun && !keys.l){
         if (keys.d){
             seeleArrayObjectRun.forEach((object) => {
-                if (object.id == 1 && object.gameFrame < 2 && Character.allowRun1){
+                if (object.id == 1 && object.gameFrame < 2 && CharacterModel.allowRun1){
                     object.update();
                     object.draw();
                 } else if (object.id == 2 
                 && object.gameFrame < 3 
                 && object.gameFrame >= 2
-                && Character.allowRun2){
+                && CharacterModel.allowRun2){
                     object.update();
                     object.draw();
                 } else if (object.id == 3
                 && object.gameFrame < 4
                 && object.gameFrame >= 3
-                && Character.allowRun3){
+                && CharacterModel.allowRun3){
                     object.update();
                     object.draw();
                 } else if (object.id == 4
                 && object.gameFrame < 5
                 && object.gameFrame >= 4
-                && Character.allowRun4){
+                && CharacterModel.allowRun4){
                     object.update();
                     object.draw();
                 }
             });
         } else if (keys.a){
             seeleArrayObjectRunReversed.forEach((object) => {
-                if (object.id == 1 && object.gameFrame < 2 && Character.allowRun5){
+                if (object.id == 1 && object.gameFrame < 2 && CharacterModel.allowRun5){
                     object.update();
                     object.draw();
                 } else if (object.id == 2 
                 && object.gameFrame < 3 
                 && object.gameFrame >= 2
-                && Character.allowRun6){
+                && CharacterModel.allowRun6){
                     object.update();
                     object.draw();
                 } else if (object.id == 3 
                 && object.gameFrame < 4
                 && object.gameFrame >= 3
-                && Character.allowRun7){
+                && CharacterModel.allowRun7){
                     object.update();
                     object.draw();
                 } else if (object.id == 4 
                 && object.gameFrame < 5
                 && object.gameFrame >= 4
-                && Character.allowRun8){
+                && CharacterModel.allowRun8){
                     object.update();
                     object.draw();
                 }
@@ -93,18 +93,18 @@ function animate() {
         }
     
     } else if (characterIdle == "inhale") {
-        Character.allowRun1 = true;
-        Character.allowRun2 = false;
-        Character.allowRun3 = false;
-        Character.allowRun4 = false;
-        Character.allowRun5 = true;
-        Character.allowRun6 = false;
-        Character.allowRun7 = false;
-        Character.allowRun8 = false;
+        CharacterModel.allowRun1 = true;
+        CharacterModel.allowRun2 = false;
+        CharacterModel.allowRun3 = false;
+        CharacterModel.allowRun4 = false;
+        CharacterModel.allowRun5 = true;
+        CharacterModel.allowRun6 = false;
+        CharacterModel.allowRun7 = false;
+        CharacterModel.allowRun8 = false;
 
-        if (!keys.l)
-        Character.adjustMap = 0;
-        if (Character.characterFrame == 1) {
+        if (!keys.l) CharacterModel.adjustMap = 0;
+        
+        if (CharacterModel.characterFrame == 1) {
             if (!toLeft) {
                 seeleObject1.draw();
                 seeleObject1.update();
@@ -114,7 +114,7 @@ function animate() {
                 seeleObject13.update();
                 seeleObject1.update();
             }
-        } else if (Character.characterFrame == 2) {
+        } else if (CharacterModel.characterFrame == 2) {
             if (!toLeft) {
                 seeleObject2.draw();
                 seeleObject2.update();
@@ -124,7 +124,7 @@ function animate() {
                 seeleObject14.update();
                 seeleObject2.update();
             }
-        } else if (Character.characterFrame == 3) {
+        } else if (CharacterModel.characterFrame == 3) {
             if (!toLeft) {
                 seeleObject3.draw();
                 seeleObject3.update();
@@ -134,7 +134,7 @@ function animate() {
                 seeleObject15.update();
                 seeleObject3.update();
             }
-        } else if (Character.characterFrame == 4) {
+        } else if (CharacterModel.characterFrame == 4) {
             if (!toLeft) {
                 seeleObject4.draw();
                 seeleObject4.update();
@@ -146,18 +146,18 @@ function animate() {
             }
         }
     } else if (characterIdle == "exhale") {
-        Character.allowRun1 = true;
-        Character.allowRun2 = false;
-        Character.allowRun3 = false;
-        Character.allowRun4 = false;
-        Character.allowRun5 = true;
-        Character.allowRun6 = false;
-        Character.allowRun7 = false;
-        Character.allowRun8 = false;
+        CharacterModel.allowRun1 = true;
+        CharacterModel.allowRun2 = false;
+        CharacterModel.allowRun3 = false;
+        CharacterModel.allowRun4 = false;
+        CharacterModel.allowRun5 = true;
+        CharacterModel.allowRun6 = false;
+        CharacterModel.allowRun7 = false;
+        CharacterModel.allowRun8 = false;
 
         if (!keys.l)
-        Character.adjustMap = 0;
-        if(Character.characterFrame == 4){
+        CharacterModel.adjustMap = 0;
+        if(CharacterModel.characterFrame == 4){
             if (!toLeft) {
                 seeleObject4.draw();
                 seeleObject4.update();
@@ -167,7 +167,7 @@ function animate() {
                 seeleObject16.update();
                 seeleObject4.update();
             }
-        } else if (Character.characterFrame == 3) {
+        } else if (CharacterModel.characterFrame == 3) {
             if (!toLeft) {
                 seeleObject3.draw();
                 seeleObject3.update();
@@ -177,7 +177,7 @@ function animate() {
                 seeleObject15.update();
                 seeleObject3.update();
             }
-        } else if (Character.characterFrame == 2) {
+        } else if (CharacterModel.characterFrame == 2) {
             if (!toLeft) {
                 seeleObject2.draw();
                 seeleObject2.update();
@@ -187,7 +187,7 @@ function animate() {
                 seeleObject14.update();
                 seeleObject2.update();
             }
-        } else if (Character.characterFrame == 1) {
+        } else if (CharacterModel.characterFrame == 1) {
             if (!toLeft) {
                 seeleObject1.draw();
                 seeleObject1.update();

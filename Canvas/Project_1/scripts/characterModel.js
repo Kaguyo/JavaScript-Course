@@ -13,7 +13,7 @@ let toLeft = false;
 let grounded = true;
 let groundedKey = false;
 
-class Character {
+class CharacterModel {
     static characterFrame = 1;
     static allowRun1 = true;
     static allowRun2 = false;
@@ -42,70 +42,70 @@ class Character {
     update(){
         if (readRun){
             if (keys.a){
-                Character.AxisX -= Character.Speed * Character.SpeedModifier;
-                if (Character.AxisX < 60) { Character.AxisX = 60 }
+                CharacterModel.AxisX -= CharacterModel.Speed * CharacterModel.SpeedModifier;
+                if (CharacterModel.AxisX < 60) { CharacterModel.AxisX = 60 }
                 if (this.id == 1) {
-                    this.gameFrame += 0.1 * this.speedModifier * (Character.Speed / 20);
+                    this.gameFrame += 0.1 * this.speedModifier * (CharacterModel.Speed / 20);
                     if (this.gameFrame >= 2){
                         this.gameFrame = 1;
-                        Character.allowRun5 = false;
-                        Character.allowRun6 = true;
+                        CharacterModel.allowRun5 = false;
+                        CharacterModel.allowRun6 = true;
                     }
                 } else if (this.id == 2) {
-                    this.gameFrame += 0.07 * this.speedModifier * (Character.Speed / 20);
+                    this.gameFrame += 0.07 * this.speedModifier * (CharacterModel.Speed / 20);
                     if (this.gameFrame >= 3){
                         this.gameFrame = 2;
-                        Character.allowRun6 = false;
-                        Character.allowRun7 = true;
+                        CharacterModel.allowRun6 = false;
+                        CharacterModel.allowRun7 = true;
                     }
                 } else if (this.id == 3) {
-                    this.gameFrame += 0.07 * this.speedModifier * (Character.Speed / 20);
+                    this.gameFrame += 0.07 * this.speedModifier * (CharacterModel.Speed / 20);
                     if (this.gameFrame >= 4){
                         this.gameFrame = 3;
-                        Character.allowRun7 = false;
-                        Character.allowRun8 = true;
+                        CharacterModel.allowRun7 = false;
+                        CharacterModel.allowRun8 = true;
                     }
                 } else if (this.id == 4) {
-                    this.gameFrame += 0.07 * this.speedModifier * (Character.Speed / 20);
+                    this.gameFrame += 0.07 * this.speedModifier * (CharacterModel.Speed / 20);
                     if (this.gameFrame >= 5){
                         this.gameFrame = 4;
-                        Character.allowRun5 = true;
-                        Character.allowRun8 = false;
+                        CharacterModel.allowRun5 = true;
+                        CharacterModel.allowRun8 = false;
                     }
                 }  
             } else if (keys.d){
-                Character.AxisX += Character.Speed * Character.SpeedModifier;
-                if (Character.AxisX > 1100) {
-                    Character.adjustMap = Character.AxisX - 1100;
-                    Character.AxisX = 1100;
+                CharacterModel.AxisX += CharacterModel.Speed * CharacterModel.SpeedModifier;
+                if (CharacterModel.AxisX > 1100) {
+                    CharacterModel.adjustMap = CharacterModel.AxisX - 1100;
+                    CharacterModel.AxisX = 1100;
                 }
                 if (this.id == 1) {
-                    this.gameFrame += 0.1 * this.speedModifier * (Character.Speed / 20);
+                    this.gameFrame += 0.1 * this.speedModifier * (CharacterModel.Speed / 20);
                     if (this.gameFrame >= 2){
                         this.gameFrame = 1;
-                        Character.allowRun1 = false;
-                        Character.allowRun2 = true;
+                        CharacterModel.allowRun1 = false;
+                        CharacterModel.allowRun2 = true;
                     }
                 } else if (this.id == 2) {
-                    this.gameFrame += 0.07 * this.speedModifier * (Character.Speed / 20);
+                    this.gameFrame += 0.07 * this.speedModifier * (CharacterModel.Speed / 20);
                     if (this.gameFrame >= 3){
                         this.gameFrame = 2;
-                        Character.allowRun2 = false;
-                        Character.allowRun3 = true;
+                        CharacterModel.allowRun2 = false;
+                        CharacterModel.allowRun3 = true;
                     }
                 } else if (this.id == 3) {
-                    this.gameFrame += 0.07 * this.speedModifier * (Character.Speed / 20);
+                    this.gameFrame += 0.07 * this.speedModifier * (CharacterModel.Speed / 20);
                     if (this.gameFrame >= 4){
                         this.gameFrame = 3;
-                        Character.allowRun3 = false;
-                        Character.allowRun4 = true;
+                        CharacterModel.allowRun3 = false;
+                        CharacterModel.allowRun4 = true;
                     }
                 } else if (this.id == 4) {
-                    this.gameFrame += 0.07 * this.speedModifier * (Character.Speed / 20);
+                    this.gameFrame += 0.07 * this.speedModifier * (CharacterModel.Speed / 20);
                     if (this.gameFrame >= 5){
                         this.gameFrame = 4;
-                        Character.allowRun1 = true;
-                        Character.allowRun4 = false;
+                        CharacterModel.allowRun1 = true;
+                        CharacterModel.allowRun4 = false;
                     }
                 }
             }
@@ -113,13 +113,13 @@ class Character {
             this.gameFrame += this.speed;
             if (this.id == 1 && this.gameFrame >= 2) {
                 this.gameFrame = 1;
-                Character.characterFrame = 2;
+                CharacterModel.characterFrame = 2;
             } else if (this.id == 2 && this.gameFrame >= 3) {
                 this.gameFrame = 2;
-                Character.characterFrame = 3;
+                CharacterModel.characterFrame = 3;
             } else if (this.id == 3 && this.gameFrame >= 4) {
                 this.gameFrame = 3;
-                Character.characterFrame = 4;
+                CharacterModel.characterFrame = 4;
             } else if (this.id == 4 && this.gameFrame >= 5) {
                 this.gameFrame = 4;
                 characterIdle = "exhale";
@@ -128,13 +128,13 @@ class Character {
             this.gameFrame -= this.speed;
             if (this.id == 4 && this.gameFrame <= 3){
                 this.gameFrame = 4;
-                Character.characterFrame = 3;
+                CharacterModel.characterFrame = 3;
             } else if (this.id == 3 && this.gameFrame <= 2) {
                 this.gameFrame = 3;
-                Character.characterFrame = 2;
+                CharacterModel.characterFrame = 2;
             } else if (this.id == 2 && this.gameFrame <= 1) {
                 this.gameFrame = 2;
-                Character.characterFrame = 1;
+                CharacterModel.characterFrame = 1;
             } else if (this.id == 1 && this.gameFrame <= 0) {
                 this.gameFrame = 1;
                 characterIdle = "inhale";
@@ -142,7 +142,7 @@ class Character {
         } 
     }
     draw(){
-        ctx.drawImage(this.image, Character.AxisX, Character.AxisY);
+        ctx.drawImage(this.image, CharacterModel.AxisX, CharacterModel.AxisY);
     }
 }
 
@@ -185,24 +185,24 @@ const seeleRunAnimation8 = new Image();
 seeleRunAnimation8.src = '../assets/models/characters/Seele/SeeleRun4Reversed.png';
 
 
-const seeleObject1 = new Character (seeleIdleAnimation1, 0.04, 1, 1);
-const seeleObject2 = new Character (seeleIdleAnimation2, 0.20, 2, 2);
-const seeleObject3 = new Character (seeleIdleAnimation3, 0.18, 3, 3);
-const seeleObject4 = new Character (seeleIdleAnimation4, 0.03, 4, 4);
-const seeleObject13 = new Character (seeleIdleAnimation5, 0.04, 1, 1);
-const seeleObject14 = new Character (seeleIdleAnimation6, 0.20, 2, 2);
-const seeleObject15 = new Character (seeleIdleAnimation7, 0.18, 3, 3);
-const seeleObject16 = new Character (seeleIdleAnimation8, 0.03, 4, 4);
+const seeleObject1 = new CharacterModel (seeleIdleAnimation1, 0.04, 1, 1);
+const seeleObject2 = new CharacterModel (seeleIdleAnimation2, 0.20, 2, 2);
+const seeleObject3 = new CharacterModel (seeleIdleAnimation3, 0.18, 3, 3);
+const seeleObject4 = new CharacterModel (seeleIdleAnimation4, 0.03, 4, 4);
+const seeleObject13 = new CharacterModel (seeleIdleAnimation5, 0.04, 1, 1);
+const seeleObject14 = new CharacterModel (seeleIdleAnimation6, 0.20, 2, 2);
+const seeleObject15 = new CharacterModel (seeleIdleAnimation7, 0.18, 3, 3);
+const seeleObject16 = new CharacterModel (seeleIdleAnimation8, 0.03, 4, 4);
 
-const seeleObject5 = new Character (seeleRunAnimation1, 10, 1, 1);
-const seeleObject6 = new Character (seeleRunAnimation2, 10, 2, 2);
-const seeleObject7 = new Character (seeleRunAnimation3, 10, 3, 3);
-const seeleObject8 = new Character (seeleRunAnimation4, 10, 4, 4);
+const seeleObject5 = new CharacterModel (seeleRunAnimation1, 10, 1, 1);
+const seeleObject6 = new CharacterModel (seeleRunAnimation2, 10, 2, 2);
+const seeleObject7 = new CharacterModel (seeleRunAnimation3, 10, 3, 3);
+const seeleObject8 = new CharacterModel (seeleRunAnimation4, 10, 4, 4);
 
-const seeleObject9 = new Character (seeleRunAnimation5, 10, 1, 1);
-const seeleObject10 = new Character (seeleRunAnimation6, 10, 2, 2);
-const seeleObject11 = new Character (seeleRunAnimation7, 10, 3, 3);
-const seeleObject12 = new Character (seeleRunAnimation8, 10, 4, 4);
+const seeleObject9 = new CharacterModel (seeleRunAnimation5, 10, 1, 1);
+const seeleObject10 = new CharacterModel (seeleRunAnimation6, 10, 2, 2);
+const seeleObject11 = new CharacterModel (seeleRunAnimation7, 10, 3, 3);
+const seeleObject12 = new CharacterModel (seeleRunAnimation8, 10, 4, 4);
 
 const seeleArrayObjectIdle = [
     seeleObject1, 
@@ -228,7 +228,7 @@ document.addEventListener("keydown", (e) => {
             keys.d = false;
             reminder = true;
         }
-        Character.adjustMap = 0;
+        CharacterModel.adjustMap = 0;
     }
     //  Run Right
     if (e.key === "d") {
@@ -239,7 +239,7 @@ document.addEventListener("keydown", (e) => {
             keys.a = false;
             reminder = true;
         }
-        Character.adjustMap2 = 0;
+        CharacterModel.adjustMap2 = 0;
     }
     //  Jump
     if (e.key === "w"){
@@ -258,7 +258,7 @@ document.addEventListener("keyup", (e) => {
     } else if (e.key === "a") {
         keys.a = false;
         toLeft = true;
-        Character.adjustMap2 = 0;
+        CharacterModel.adjustMap2 = 0;
     }
     if (e.key === "d" && reminder){
         keys.d = false;
@@ -268,7 +268,7 @@ document.addEventListener("keyup", (e) => {
         keys.d = false;
         toLeft = false;
         if (!keys.l)
-        Character.adjustMap = 0;
+        CharacterModel.adjustMap = 0;
     }
     if (e.key === "w"){
         keys.w = false;

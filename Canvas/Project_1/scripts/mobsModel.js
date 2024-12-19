@@ -1,0 +1,5 @@
+class MobsModel {
+    constructor(Id,  ){
+
+    }
+}
