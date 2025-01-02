@@ -9,6 +9,7 @@ function animate(){
         layer.draw();
         layer.update();        
     });
+    // Dash     ================================
     if (keys.l && CharacterModel.AxisY == 630){
         CharacterModel.Speed = 40;
         if (toLeft){
@@ -28,17 +29,25 @@ function animate(){
     }
     // Jump     ================================
     if (keys.w){
-        if (grounded) CharacterModel.AxisY -= 27;
+        if (CharacterModel.isGrounded || !CharacterModel.terminouPulo){
+            CharacterModel.AxisY -= 27;
+            CharacterModel.isGrounded = false;
+            CharacterModel.terminouPulo = false;
+        }
         if (CharacterModel.AxisY <= 250){
             CharacterModel.AxisY = 250;
             keys.w = false;
-            grounded = false;
+            CharacterModel.terminouPulo = true;
+            CharacterModel.DisableMacroJump = true;
         } 
-    } else if (CharacterModel.AxisY < 630){
-        CharacterModel.AxisY += 17;
-        if (CharacterModel.AxisY > 630) CharacterModel.AxisY = 630;
-    } if (CharacterModel.AxisY == 630) groundedKey = true;
-    // End Jump ================================
+    } if (!CharacterModel.isGrounded && CharacterModel.terminouPulo){
+        CharacterModel.AxisY += 22;
+        if (CharacterModel.AxisY > 630){
+            CharacterModel.AxisY = 630;
+            CharacterModel.isGrounded = true;
+        } 
+    }
+    // End Jump  ===============================
     if (readRun && !keys.l){
         if (keys.d){
             seeleArrayObjectRun.forEach((object) => {

@@ -76,5 +76,5 @@ let justifyStats = [10,20,30,40,50,53,60,64,70,75,80,85,90,95,100,101,102,103,10
 const Seele = new Characters(1, "Seele", 23, "1.75 m", "63 kg", "Female", {}, [], 79);
 const Keqing = new Characters(2, "Keqing", 19, "1.67 m", "58 kg", "Female", {}, [], 79)
 
-console.log(Keqing);
-console.log(Seele);
+console.log(Keqing.Atk);
+console.log(Seele.Atk);

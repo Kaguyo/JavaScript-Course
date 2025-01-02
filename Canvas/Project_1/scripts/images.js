@@ -22,7 +22,7 @@ class Layer {
     }
     update(){
         this.x += CharacterModel.adjustMap * this.speedModifier;
-        if (this.x >= 3840) {
+        if (this.x >= 3840){
             if (this.id == 1){
                 this.x = this.x - 3840;
             } else if (this.id == 2){

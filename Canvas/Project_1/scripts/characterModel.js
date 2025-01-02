@@ -8,10 +8,10 @@ let keys = {
     l: false
 };
 
+let DisableMacroJump = false;
+let terminouPulo = true;
 let reminder = false;
 let toLeft = false;
-let grounded = true;
-let groundedKey = false;
 
 class CharacterModel {
     static characterFrame = 1;
@@ -31,6 +31,7 @@ class CharacterModel {
 
     static adjustMap = 0;
     static adjustMap2 = 0;
+    static isGrounded = true;
 
     constructor(image, speed, gameFrame, id, speedModifier = 1){
         this.image = image;
@@ -147,42 +148,42 @@ class CharacterModel {
 }
 
 const seeleIdleAnimation1 = new Image();
-seeleIdleAnimation1.src = '../assets/models/characters/Seele/SeeleIdle.png';
+seeleIdleAnimation1.src = "../assets/models/characters/Seele/SeeleIdle.png";
 const seeleIdleAnimation2 = new Image();
-seeleIdleAnimation2.src = '../assets/models/characters/Seele/SeeleIdle2.png';
+seeleIdleAnimation2.src = "../assets/models/characters/Seele/SeeleIdle2.png";
 const seeleIdleAnimation3 = new Image();
-seeleIdleAnimation3.src = '../assets/models/characters/Seele/SeeleIdle3.png';
+seeleIdleAnimation3.src = "../assets/models/characters/Seele/SeeleIdle3.png";
 const seeleIdleAnimation4 = new Image();
-seeleIdleAnimation4.src = '../assets/models/characters/Seele/SeeleIdle4.png';
+seeleIdleAnimation4.src = "../assets/models/characters/Seele/SeeleIdle4.png";
 
 const seeleIdleAnimation5 = new Image();
-seeleIdleAnimation5.src = '../assets/models/characters/Seele/SeeleIdleReversed.png';
+seeleIdleAnimation5.src = "../assets/models/characters/Seele/SeeleIdleReversed.png";
 const seeleIdleAnimation6 = new Image();
-seeleIdleAnimation6.src = '../assets/models/characters/Seele/SeeleIdle2Reversed.png';
+seeleIdleAnimation6.src = "../assets/models/characters/Seele/SeeleIdle2Reversed.png";
 const seeleIdleAnimation7 = new Image();
-seeleIdleAnimation7.src = '../assets/models/characters/Seele/SeeleIdle3Reversed.png';
+seeleIdleAnimation7.src = "../assets/models/characters/Seele/SeeleIdle3Reversed.png";
 const seeleIdleAnimation8 = new Image();
-seeleIdleAnimation8.src = '../assets/models/characters/Seele/SeeleIdle4Reversed.png';
+seeleIdleAnimation8.src = "../assets/models/characters/Seele/SeeleIdle4Reversed.png";
 
 // Imagens animacao corrida
 const seeleRunAnimation1 = new Image();
-seeleRunAnimation1.src = '../assets/models/characters/Seele/SeeleRun.png';
+seeleRunAnimation1.src = "../assets/models/characters/Seele/SeeleRun.png";
 const seeleRunAnimation2 = new Image();
-seeleRunAnimation2.src = '../assets/models/characters/Seele/SeeleRun2.png';
+seeleRunAnimation2.src = "../assets/models/characters/Seele/SeeleRun2.png";
 const seeleRunAnimation3 = new Image();
-seeleRunAnimation3.src = '../assets/models/characters/Seele/SeeleRun3.png';
+seeleRunAnimation3.src = "../assets/models/characters/Seele/SeeleRun3.png";
 const seeleRunAnimation4 = new Image();
-seeleRunAnimation4.src = '../assets/models/characters/Seele/SeeleRun4.png';
+seeleRunAnimation4.src = "../assets/models/characters/Seele/SeeleRun4.png";
 
 // Imagens animacao corrida reversed
 const seeleRunAnimation5 = new Image();
-seeleRunAnimation5.src = '../assets/models/characters/Seele/SeeleRunReversed.png';
+seeleRunAnimation5.src = "../assets/models/characters/Seele/SeeleRunReversed.png";
 const seeleRunAnimation6 = new Image();
-seeleRunAnimation6.src = '../assets/models/characters/Seele/SeeleRun2Reversed.png';
+seeleRunAnimation6.src = "../assets/models/characters/Seele/SeeleRun2Reversed.png";
 const seeleRunAnimation7 = new Image();
-seeleRunAnimation7.src = '../assets/models/characters/Seele/SeeleRun3Reversed.png';
+seeleRunAnimation7.src = "../assets/models/characters/Seele/SeeleRun3Reversed.png";
 const seeleRunAnimation8 = new Image();
-seeleRunAnimation8.src = '../assets/models/characters/Seele/SeeleRun4Reversed.png';
+seeleRunAnimation8.src = "../assets/models/characters/Seele/SeeleRun4Reversed.png";
 
 
 const seeleObject1 = new CharacterModel (seeleIdleAnimation1, 0.04, 1, 1);
@@ -242,7 +243,7 @@ document.addEventListener("keydown", (e) => {
         CharacterModel.adjustMap2 = 0;
     }
     //  Jump
-    if (e.key === "w"){
+    if (e.key === "w" && !CharacterModel.DisableMacroJump){
         keys.w = true;
     }
     if (e.key === "l"){
@@ -272,10 +273,10 @@ document.addEventListener("keyup", (e) => {
     }
     if (e.key === "w"){
         keys.w = false;
-        grounded = false;
-        if (groundedKey) {
-            grounded = true;
-        }
+        CharacterModel.isGrounded = false;
+        CharacterModel.terminouPulo = true;
+        if (CharacterModel.AxisY > 580) CharacterModel.DisableMacroJump = false; /* allowing jump instruction
+        to be read before character lands the ground for smoother feeling, however it won't jump before landing */
     }
     if (e.key === "l"){
         keys.l = false;
